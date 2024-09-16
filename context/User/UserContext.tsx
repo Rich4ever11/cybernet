@@ -5,7 +5,7 @@ type Props = {};
 
 const UserContext = createContext<any>({});
 
-export default function UserContextProvider({
+export function UserContextProvider({
   children,
 }: {
   children: React.ReactNode;
@@ -14,7 +14,14 @@ export default function UserContextProvider({
   const [userLoggedIn, setUserLoggedIn] = useState();
   const [loading, setLoading] = useState();
 
-  const value = {};
+  const value = {
+    userInfo,
+    setUserInfo,
+    userLoggedIn,
+    setUserLoggedIn,
+    setLoading,
+    loading,
+  };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
 

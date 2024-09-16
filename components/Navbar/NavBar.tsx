@@ -3,9 +3,11 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { GiCyberEye } from "react-icons/gi";
 
-type Props = {};
+type Props = {
+  username: string;
+};
 
-export default function ({}: Props) {
+export default function ({ username }: Props) {
   const [showUserMenu, setShowUserMenu] = useState(false);
 
   function handleProfileMenu(event: any): void {
@@ -24,6 +26,9 @@ export default function ({}: Props) {
             <p className="pl-2 text-white">CYBERNET</p>
           </a>
           <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <div className="px-8 text-gray-50">
+              <p>{username}</p>
+            </div>
             <button
               type="button"
               className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
@@ -33,21 +38,18 @@ export default function ({}: Props) {
               data-dropdown-placement="bottom"
               onClick={handleProfileMenu}
             >
-              <span className="sr-only">Open user menu</span>
               <Image
                 className="rounded-full"
                 src={
-                  "https://plus.unsplash.com/premium_photo-1675130119373-61ada6685d63?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  "https://i.pinimg.com/736x/34/42/83/34428331e26a3ff908f4e852709249a5.jpg"
                 }
                 alt=""
                 width={24}
                 height={24}
               ></Image>
             </button>
-            <div className="px-8 text-gray-50">
-              <p>User Name</p>
-            </div>
           </div>
+
           <div
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
             id="navbar-user"
@@ -90,6 +92,41 @@ export default function ({}: Props) {
           </div>
         </div>
       </nav>
+      {showUserMenu ? (
+        <div
+          className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-black py-1 shadow-lg ring-1 ring-white ring-opacity-5 focus:outline-none"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="user-menu-button"
+        >
+          <a
+            href="#"
+            className="block px-4 py-2 text-sm text-white"
+            role="menuitem"
+            id="user-menu-item-0"
+          >
+            Your Profile
+          </a>
+          <a
+            href="#"
+            className="block px-4 py-2 text-sm text-white"
+            role="menuitem"
+            id="user-menu-item-1"
+          >
+            Settings
+          </a>
+          <a
+            href="#"
+            className="block px-4 py-2 text-sm text-white"
+            role="menuitem"
+            id="user-menu-item-2"
+          >
+            Sign out
+          </a>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
