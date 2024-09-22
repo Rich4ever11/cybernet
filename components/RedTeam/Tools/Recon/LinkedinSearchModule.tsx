@@ -71,7 +71,7 @@ export default function LinkedinSearchModule({}: Props) {
 
         <select
           className="select select-primary w-full max-w-xs my-2"
-          defaultValue={"DEFAULT"}
+          value={"DEFAULT"}
           onChange={(event) => setSearchByValue(event.target.value)}
         >
           <option value="DEFAULT" disabled selected>

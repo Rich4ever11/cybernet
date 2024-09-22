@@ -1,5 +1,5 @@
 import React from "react";
-import Reconnaissance from "@/components/RedTeam/Recon/Reconnaissance";
+import Reconnaissance from "@/components/RedTeam/Tools/Recon/Reconnaissance";
 
 type Props = {};
 
