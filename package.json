@@ -16,6 +16,7 @@
     "daisyui": "^4.12.10",
     "jose": "^5.9.2",
     "next": "14.2.11",
+    "openai": "^4.63.0",
     "react": "^18",
     "react-doc-viewer": "^0.1.14",
     "react-dom": "^18",

@@ -8,11 +8,7 @@ import "react-pdf/dist/Page/TextLayer.css";
 // });
 
 export const DocumentViewer = ({}) => {
-  const [dynamicDocs, setDynamicDocs] = useState([
-    {
-      uri: "/UnofficialTranscript.pdf", // for remote file
-    },
-  ]);
+  const [dynamicDocs, setDynamicDocs] = useState([]);
 
   const handleFileUpload = (event) => {
     console.log(event.target.files[0]);
@@ -28,19 +24,34 @@ export const DocumentViewer = ({}) => {
   return (
     <>
       <div>
-        <div style={{ height: "100vh", overflow: "hidden" }} className="p-2">
-          <div>
+        <div
+          style={{ height: "100vh", overflow: "hidden" }}
+          className="px-4 bg-black"
+        >
+          <div className="bg-neutral-900">
+            <div className="label">
+              <span className="label-text"></span>
+              <span className="label-text-alt text-white">
+                Upload Red Teaming Cybersecurity Documents
+              </span>
+            </div>
             <input
               type="file"
               className="file-input file-input-ghost w-full max-w-xs"
               onChange={handleFileUpload}
             />
           </div>
-          <DocViewer
-            pluginRenderers={DocViewerRenderers}
-            documents={dynamicDocs}
-            style={{ maxHeight: "100vh", maxWidth: "100%", overflow: "scroll" }}
-          />
+          {dynamicDocs && (
+            <DocViewer
+              pluginRenderers={DocViewerRenderers}
+              documents={dynamicDocs}
+              style={{
+                maxHeight: "100vh",
+                maxWidth: "100%",
+                overflow: "scroll",
+              }}
+            />
+          )}
         </div>
       </div>
     </>
