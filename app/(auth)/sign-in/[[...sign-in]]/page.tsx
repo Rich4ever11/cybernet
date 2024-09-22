@@ -15,14 +15,14 @@ export default function SignInPage({}: Props) {
         </h1>
       </div>
       <SignInCard />
-      <div className="flex justify-center py-8">
+      {/* <div className="flex justify-center py-8">
         <img
           src="https://ouch-cdn2.icons8.com/ijnAGsMxvQI_NJv8NsWfGZFAtD264994Nr5dVqWChW8/rs:fit:368:303/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNzU3/Lzk4OTJiZjFhLWJh/ZWQtNDcxMC1hNmRi/LTdmMDFjNDlhODIw/YS5wbmc.png"
           width={400}
           height={400}
           alt="Picture of Hackers"
         />
-      </div>
+      </div> */}
     </div>
   );
 }

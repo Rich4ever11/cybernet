@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import LinkedinCard from "./Card/LinkedinCard";
+import { GiCyberEye } from "react-icons/gi";
 
 type Props = {};
 
@@ -45,11 +46,15 @@ export default function LinkedinSearchModule({}: Props) {
 
   return (
     <div className="p-4">
+      <div className="">
+        <h1 className="text-3xl text-white">Linkedin Search</h1>
+      </div>
       <div className="max-w-lg  py-2">
         <label className="input input-bordered flex items-center gap-2">
           <input
             type="text"
             className="grow"
+            placeholder="Search Linkedin Profiles"
             value={searchQuery}
             onChange={(event) => setSearchQuery(event.target.value)}
           />
@@ -70,11 +75,10 @@ export default function LinkedinSearchModule({}: Props) {
         </label>
 
         <select
-          className="select select-primary w-full max-w-xs my-2"
-          value={"DEFAULT"}
+          className="select select-error w-full max-w-xs my-2"
           onChange={(event) => setSearchByValue(event.target.value)}
         >
-          <option value="DEFAULT" disabled selected>
+          <option disabled selected>
             Select a parameter to search by
           </option>
           {searchByOptions.map((param, index) => (

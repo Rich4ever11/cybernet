@@ -74,6 +74,14 @@ export default function SignInCard({}: Props) {
     <>
       <form className="max-w-md mx-auto bg-black p-10 rounded-lg border-red-900 border-4">
         <div className="relative z-0 w-full mb-5 group">
+          <div className="flex justify-center py-8">
+            <img
+              src="https://ouch-cdn2.icons8.com/ijnAGsMxvQI_NJv8NsWfGZFAtD264994Nr5dVqWChW8/rs:fit:368:303/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNzU3/Lzk4OTJiZjFhLWJh/ZWQtNDcxMC1hNmRi/LTdmMDFjNDlhODIw/YS5wbmc.png"
+              width={400}
+              height={400}
+              alt="Picture of Hackers"
+            />
+          </div>
           <div className="mb-5">
             <label
               htmlFor="username"

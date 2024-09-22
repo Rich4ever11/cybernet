@@ -2,15 +2,15 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
 export async function POST(req: NextApiRequest, res: NextApiResponse<any>) {
-  const { queryParam, searchValue } = await new Response(req.body).json();
+  const { searchValue } = await new Response(req.body).json();
 
-  console.log(queryParam, searchValue);
+  console.log(searchValue);
 
-  const url = `https://linkedin-data-api.p.rapidapi.com/search-people?${queryParam}=${searchValue}`;
+  const url = `https://breachdirectory.p.rapidapi.com/?func=auto&term=${searchValue}`;
 
   const requestHeader: HeadersInit = new Headers();
   requestHeader.set("x-rapidapi-key", process.env.RAPID_API_KEY || "");
-  requestHeader.set("x-rapidapi-host", "linkedin-data-api.p.rapidapi.com");
+  requestHeader.set("x-rapidapi-host", "breachdirectory.p.rapidapi.com");
   try {
     const response = await fetch(url, {
       method: "GET",
