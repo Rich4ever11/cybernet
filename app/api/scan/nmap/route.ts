@@ -18,7 +18,6 @@ export async function POST(req: NextApiRequest, res: NextApiResponse<any>) {
       body: JSON.stringify(data),
     });
     const result = await response.json();
-    console.log(result);
     return NextResponse.json({ body: result }, { status: 200 });
   } catch (error) {
     console.error(error);

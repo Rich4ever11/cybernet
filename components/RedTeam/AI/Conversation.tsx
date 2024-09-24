@@ -9,10 +9,10 @@ type Props = {};
 export default function ({}: Props) {
   return (
     <div className="flex flex-row h-full">
-      <div className="max-w-auto border-red-50 px-1 justify-items-center basis-1/4 flex flex-col justify-end bg-neutral-900">
+      <div className="max-w-auto border-red-50 px-1 justify-items-center basis-4/12 flex flex-col justify-end bg-neutral-900">
         <Chat />
       </div>
-      <div className="basis-3/4">
+      <div className="basis-8/12">
         <DocumentViewer />
       </div>
     </div>
