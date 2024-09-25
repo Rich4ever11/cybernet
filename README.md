@@ -1,13 +1,19 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 1.) Created the initial webpage/software for the program managing various scripts (In progress) - Current Functionality
+
 2.) Ability to Upload Geotiff files and have it display on a map (leaflet)
+
 3.) UI elements for searching and viewing available scripts
+
 4.) Ability to Upload Netcdf files
 
 5.) Added the ability to clear map layer (both online and offline)
+
 6.) Added the ability to clear the file and allow for another upload of different files (w/o refreshing the webpage)
+
 7.) Currently fixing errors for script execution (file works but errors whenever access to the geotiff is initiated more than once)
+
 Note: this could be due to windows access the running file and examining it
 Fixed errors and other issues (Demo coming next week)
 
