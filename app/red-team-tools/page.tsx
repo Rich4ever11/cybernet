@@ -8,8 +8,8 @@ type Props = {};
 export default function Recon({}: Props) {
   return (
     <div>
-      {/* <Reconnaissance />
-      <Scanning /> */}
+      <Reconnaissance />
+      <Scanning />
       <Exploit />
     </div>
   );
