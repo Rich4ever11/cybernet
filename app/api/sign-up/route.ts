@@ -1,5 +1,6 @@
 import { docClient } from "@/aws/config";
 const { createHash } = require("crypto");
+const uuidv4 = require("uuid/v4");
 import type { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
@@ -27,6 +28,7 @@ export async function POST(
           PutRequest: {
             Item: {
               "Prim Key": hash_password(req_password),
+              id: uuidv4(),
               email: req_email,
               first_name: req_firstName,
               last_name: req_lastName,

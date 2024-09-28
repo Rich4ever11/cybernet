@@ -3,6 +3,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { UserContextProvider } from "@/context/User/UserContext";
+
 import "./globals.css";
 
 const geistSans = localFont({

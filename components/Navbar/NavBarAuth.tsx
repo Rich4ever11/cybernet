@@ -27,8 +27,8 @@ export default function NavBarAuth() {
   }, []);
 
   return (
-    <div className="bg-black min-h-screen h-full grid font-[family-name:var(--font-geist-sans)]">
-      <NavBar username={userData.username || "Loading..."} />
+    <div className="bg-black">
+      {userData && <NavBar username={userData.username || "Loading..."} />}
     </div>
   );
 }

@@ -106,38 +106,66 @@ export default function NmapScanningModule({}: Props) {
 
   return (
     <div className="p-4">
-      <div className="">
-        <h1 className="text-4xl text-white">Nmap Scanner</h1>
-      </div>
-      <div className="max-w-lg  py-2">
-        <label className="input input-bordered flex items-center gap-2">
-          <input
-            type="text"
-            className="grow"
-            placeholder="IP Address or Domain"
-            value={ipAddress}
-            onChange={(event) => setIpAddress(event.target.value)}
-          />
-        </label>
-      </div>
-      <div className="max-w-lg  py-2">
-        <div className="py-2">
-          <h1 className="text-xl text-white">Ports: {`1-${portSpan}`}</h1>
+      <div className="flex">
+        <div className="basis-2/4 max-md:basis-full">
+          <div className="">
+            <h1 className="text-4xl text-white">Nmap Scanner</h1>
+          </div>
+          <div className="max-w-lg  py-2">
+            <label className="input input-bordered flex items-center gap-2">
+              <input
+                type="text"
+                className="grow"
+                placeholder="IP Address or Domain"
+                value={ipAddress}
+                onChange={(event) => setIpAddress(event.target.value)}
+              />
+            </label>
+          </div>
+          <div className="max-w-lg  py-2">
+            <div className="py-2">
+              <h1 className="text-xl text-white">Ports: {`1-${portSpan}`}</h1>
+            </div>
+            <input
+              type="range"
+              min={1}
+              max={65535}
+              value={portSpan}
+              onChange={(event) => setPortSpan(parseInt(event.target.value))}
+              className="range range-error"
+            />
+          </div>
+          <div>
+            <button
+              className="btn btn-outline btn-error"
+              onClick={handlePortScan}
+            >
+              Scan Target
+            </button>
+          </div>
         </div>
-        <input
-          type="range"
-          min={1}
-          max={65535}
-          value={portSpan}
-          onChange={(event) => setPortSpan(parseInt(event.target.value))}
-          className="range range-error"
-        />
-      </div>
 
-      <div>
-        <button className="btn btn-outline btn-error" onClick={handlePortScan}>
-          Scan Target
-        </button>
+        <div className="basis-2/4 max-md:hidden">
+          <div className="flex justify-center divider divider-error">
+            <h1 className="text-4xl text-white">Port Scanning</h1>
+          </div>
+          <article className="text-wrap">
+            <div className="text-white space-y-4">
+              <div>
+                <p className="text-center">
+                  Once all the relevant data has been gathered in the
+                  reconnaissance phase, it’s time to move on to scanning. In
+                  this penetration testing phase, the tester uses various tools
+                  to identify open ports and check network traffic on the target
+                  system. Because open ports are potential entry points for
+                  attackers, penetration testers need to identify as many open
+                  ports as possible for the next penetration testing phase.
+                </p>
+              </div>
+              <p className="text-end text-gray-600">— eccouncil.org</p>
+            </div>
+          </article>
+        </div>
       </div>
 
       {loading == false ? (

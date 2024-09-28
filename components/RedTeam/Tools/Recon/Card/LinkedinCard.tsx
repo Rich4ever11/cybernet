@@ -24,10 +24,9 @@ export default function LinkedinCard({
       <div className="card bg-base-100 w-96 shadow-xl">
         <figure className="px-10 pt-10 py-4">
           <div className="avatar">
-            <div className="ring-primary ring-offset-base-100 w-24 rounded-full ring ring-offset-2">
+            <div className="ring-error ring-offset-base-100 w-24 rounded-full ring ring-offset-2">
               <img
                 src={
-                  profilePicture &&
                   "https://i1.sndcdn.com/artworks-000189080723-ez2uad-t500x500.jpg"
                 }
                 alt="Profile Picture"
