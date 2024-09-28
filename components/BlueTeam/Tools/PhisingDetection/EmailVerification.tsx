@@ -28,7 +28,9 @@ export default function EmailVerification({}: Props) {
       if (res.ok) {
         console.log("OK");
         console.log(result);
-        setEmailVerificationData(result.body);
+        if (result?.body?.status !== "fail") {
+          setEmailVerificationData(result.body);
+        }
       }
     } catch {
       console.log("Search Failed");
