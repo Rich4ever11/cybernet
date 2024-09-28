@@ -13,7 +13,6 @@ export default function Scanning({}: Props) {
         </div>
         <h1 className="text-6xl text-white">Scanning</h1>
       </div>
-      <div className="divider divider-error">Scanning Tool X</div>
       <NmapScanningModule />
     </div>
   );

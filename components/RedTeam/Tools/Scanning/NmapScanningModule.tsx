@@ -86,7 +86,7 @@ export default function NmapScanningModule({}: Props) {
       if (res.ok) {
         console.log("OK");
         console.log(result);
-        setScanResults(result);
+        setScanResults(result.body.scan);
 
         if (
           result.body.result === undefined ||
@@ -142,12 +142,12 @@ export default function NmapScanningModule({}: Props) {
 
       {loading == false ? (
         <div className="p-2">
-          {scanResults?.body?.scan &&
-            Object.keys(scanResults?.body?.scan).map(
+          {scanResults &&
+            Object.keys(scanResults).map(
               (machineKey: string, index: number) => (
                 <div key={index}>
-                  {handleOSInfo(scanResults.body.scan[machineKey] as any)}
-                  {handlePortDisplay(scanResults.body.scan[machineKey] as any)}
+                  {handleOSInfo(scanResults[machineKey] as any)}
+                  {handlePortDisplay(scanResults[machineKey] as any)}
                 </div>
               )
             )}

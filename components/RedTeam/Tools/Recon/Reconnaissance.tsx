@@ -14,10 +14,10 @@ export default function Reconnaissance({}: Props) {
         </div>
         <h1 className="text-6xl text-white">Reconnaissance</h1>
       </div>
-      <div className="divider divider-error">Recon Tool X</div>
+      <div className="divider divider-error"></div>
       <LinkedinSearchModule />
-      <div className="divider divider-error">Recon Tool Y</div>
       <BreachSearch />
+      <div className="divider divider-error"></div>
     </div>
   );
 }

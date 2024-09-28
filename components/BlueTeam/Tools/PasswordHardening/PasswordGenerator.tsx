@@ -55,6 +55,7 @@ export default function PasswordGenerator({}: Props) {
   };
 
   const handlePasswordGeneration = () => {
+    setGeneratedPassword("");
     // Create a list of values we need
     const filteredPassConfig = [
       { name: "lowerLetters", checked: lowerCaseLetters, ASCIISpan: [97, 122] },
@@ -63,10 +64,9 @@ export default function PasswordGenerator({}: Props) {
       {
         name: "specialCharacters",
         checked: specialCharacters,
-        specialCharacterList: specialCharactersList,
       },
     ].filter((passConfig) => passConfig.checked === true);
-    if (filteredPassConfig.length >= 0) {
+    if (filteredPassConfig.length > 0) {
       let newPassword = "";
       console.log(filteredPassConfig);
       for (let i = 0; i < passwordLength; i++) {
@@ -96,7 +96,7 @@ export default function PasswordGenerator({}: Props) {
     <div className="flex flex-nowrap">
       <div className="basis-2/4 max-md:basis-full p-2 max-w-full">
         <div className="">
-          <h1 className="text-3xl text-white">Password Generator</h1>
+          <h1 className="text-4xl text-white">Password Generator</h1>
         </div>
         <div className="max-w-3xl py-2">
           <div className="flex space-x-2 max-w-4xl">
@@ -116,7 +116,9 @@ export default function PasswordGenerator({}: Props) {
           </div>
 
           <div className="py-8">
-            <p className="py-2">Password Length {passwordLength}</p>
+            <p className="py-2 text-2xl text-white">
+              Password Length {passwordLength}
+            </p>
             <input
               type="range"
               min={0}
@@ -131,7 +133,9 @@ export default function PasswordGenerator({}: Props) {
 
           <div className="form-control w-full max-w-full py-2">
             <label className="cursor-pointer label">
-              <span className="label-text">Lowercase Letters</span>
+              <span className="label-text text-2xl text-white">
+                Lowercase Letters
+              </span>
               <input
                 type="checkbox"
                 className="checkbox checkbox-info"
@@ -143,7 +147,9 @@ export default function PasswordGenerator({}: Props) {
 
           <div className="form-control w-full max-w-full py-2">
             <label className="cursor-pointer label">
-              <span className="label-text">Uppercase Letters</span>
+              <span className="label-text text-2xl text-white">
+                Uppercase Letters
+              </span>
               <input
                 type="checkbox"
                 className="checkbox checkbox-info"
@@ -155,7 +161,7 @@ export default function PasswordGenerator({}: Props) {
 
           <div className="form-control w-full max-w-full py-2">
             <label className="cursor-pointer label">
-              <span className="label-text">Numbers</span>
+              <span className="label-text text-2xl text-white">Numbers</span>
               <input
                 type="checkbox"
                 className="checkbox checkbox-info"
@@ -167,7 +173,9 @@ export default function PasswordGenerator({}: Props) {
 
           <div className="form-control w-full max-w-full py-2">
             <label className="cursor-pointer label">
-              <span className="label-text">Special Characters</span>
+              <span className="label-text text-2xl text-white">
+                Special Characters
+              </span>
               <input
                 type="checkbox"
                 className="checkbox checkbox-info"
