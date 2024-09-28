@@ -3,6 +3,7 @@ import {
   getUserCookieSession,
   setUserCookies,
 } from "@/util/middleware/cookies";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -174,6 +175,7 @@ export default function SignUpCard({}: Props) {
             />
           </div>
         </div>
+
         <button
           type="submit"
           className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg font-mono w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
@@ -182,6 +184,11 @@ export default function SignUpCard({}: Props) {
         >
           {!loading ? "Submit" : "loading..."}
         </button>
+        <div className="py-2">
+          <p className="text-gray-600">
+            Already have an account? <Link href="/sign-in">Login Here</Link>
+          </p>
+        </div>
       </form>
     </>
   );

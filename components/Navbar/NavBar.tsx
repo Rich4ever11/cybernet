@@ -4,12 +4,14 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { GiConsoleController, GiCyberEye } from "react-icons/gi";
 import { logout } from "@/util/middleware/cookies";
+import { useRouter } from "next/navigation";
 
 type Props = {
   username: string;
 };
 
 export default function ({ username }: Props) {
+  const router = useRouter();
   const [showUserMenu, setShowUserMenu] = useState(false);
 
   function handleProfileMenu(event: any): void {
@@ -130,9 +132,15 @@ export default function ({ username }: Props) {
             className="block px-4 py-2 text-sm text-white"
             role="menuitem"
             id="user-menu-item-2"
-            onClick={logout}
           >
-            Sign out
+            <button
+              onClick={() => {
+                logout();
+                router.push("/sign-in");
+              }}
+            >
+              Sign out
+            </button>
           </a>
         </div>
       ) : (
