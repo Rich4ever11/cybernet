@@ -69,14 +69,14 @@ export default function SignUpCard({}: Props) {
       const result = res.json();
       if (res.ok) {
         console.log("OK");
-        const cookies_data = {
-          username: username,
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-        };
-        setUserCookies(cookies_data);
-        router.push("/");
+        // const cookies_data = {
+        //   username: username,
+        //   firstName: firstName,
+        //   lastName: lastName,
+        //   email: email,
+        // };
+        // setUserCookies(cookies_data);
+        router.push("/sign-in");
       }
     }
     setUsername("");

@@ -1,6 +1,6 @@
 import { docClient } from "@/aws/config";
 const { createHash } = require("crypto");
-const uuidv4 = require("uuid/v4");
+import { v4 as uuidv4 } from "uuid";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
@@ -58,7 +58,7 @@ export async function POST(
 
   const result = await createUser();
   if (result) {
-    return NextResponse.json({ message: "success" }, { status: 200 });
+    return NextResponse.json({ data: "success" }, { status: 200 });
   } else {
     return NextResponse.json(
       {

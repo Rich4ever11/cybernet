@@ -1,6 +1,6 @@
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import React, { FC, useState } from "react";
-import dynamic from "next/dynamic";
+import { getUserCookieSession } from "@/util/middleware/cookies";
 import "react-pdf/dist/Page/TextLayer.css";
 
 // const PdfViewerComponent = dynamic(() => import("react-doc-viewer"), {
@@ -10,15 +10,29 @@ import "react-pdf/dist/Page/TextLayer.css";
 export const DocumentViewer = ({}) => {
   const [dynamicDocs, setDynamicDocs] = useState([]);
 
-  const handleFileUpload = (event) => {
-    console.log(event.target.files[0]);
-    const objectURL = URL.createObjectURL(event.target.files[0]);
-    setDynamicDocs([
-      ...dynamicDocs,
+  const handleFileUpload = async (event) => {
+    const uploadFile = event.target.files[0];
+    const userDataResult = await getUserCookieSession();
+    const { id } = userDataResult.userData;
+    var data = new FormData();
+    data.append("data", uploadFile);
+    data.append("name", uploadFile.name);
+    const response = await fetch(
+      `/api/document/upload?file=${uploadFile.name}&id=${id}`,
       {
-        uri: objectURL,
-      },
-    ]);
+        method: "POST",
+        body: data,
+      }
+    );
+    if (response.ok) {
+      const objectURL = URL.createObjectURL(event.target.files[0]);
+      setDynamicDocs([
+        ...dynamicDocs,
+        {
+          uri: objectURL,
+        },
+      ]);
+    }
   };
 
   return (

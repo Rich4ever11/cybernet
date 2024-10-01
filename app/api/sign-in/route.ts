@@ -64,6 +64,7 @@ export async function POST(
       first_name: result?.first_name,
       last_name: result?.last_name,
       username: result?.username,
+      id: result?.id,
     };
     return NextResponse.json({ body: data }, { status: 200 });
   } else {
