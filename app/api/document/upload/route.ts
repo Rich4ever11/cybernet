@@ -59,6 +59,8 @@ export async function POST(req: any, res: NextApiResponse<ResponseData>) {
     const filename = userRequest.get("file");
     const userId = userRequest.get("id");
     const base64 = await stream2buffer(req.body);
+
+    //add a security measure to prevent any user from upload
     if (base64 && filename && userId) {
       const SavePath = `${userId}/${filename}`;
       const command = new PutObjectCommand({
