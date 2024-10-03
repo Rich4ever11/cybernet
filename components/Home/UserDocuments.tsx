@@ -11,7 +11,7 @@ import { IoIosDocument } from "react-icons/io";
 type Props = {};
 
 export default function UserDocuments({}: Props) {
-  const [dynamicDocs, setDynamicDocs] = useState([]);
+  const [dynamicDocs, setDynamicDocs] = useState<any>([]);
   const [userDocuments, setUserDocuments] = useState([]);
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
@@ -38,8 +38,29 @@ export default function UserDocuments({}: Props) {
     return pathSplit[pathSplit.length - 1];
   };
 
-  const handleDocumentRender = (documentKey: string) => {
+  const handleDocumentRender = async (documentKey: string) => {
     console.log(documentKey);
+    const data = {
+      documentKey: documentKey,
+    };
+
+    const res = await fetch("/api/document/render", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+    const documentByteArray = await res.arrayBuffer();
+    const documentBlob = new Blob([documentByteArray]);
+    const objectURL = URL.createObjectURL(documentBlob);
+    setDynamicDocs([
+      ...dynamicDocs,
+      {
+        uri: objectURL,
+      },
+    ]);
   };
 
   useEffect(() => {

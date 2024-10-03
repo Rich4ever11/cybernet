@@ -52,4 +52,22 @@ export async function GET(req: any, res: NextApiResponse<ResponseData>) {
   }
 }
 
-export async function POST(req: any, res: NextApiResponse<ResponseData>) {}
+export async function POST(req: any, res: NextApiResponse<ResponseData>) {
+  try {
+    const { documentKey } = await new Response(req.body).json();
+    const command = new GetObjectCommand({
+      Bucket: process.env.S3_BUCKET_NAME,
+      Key: documentKey,
+    });
+    const response = await s3Config.send(command);
+    const fileMetadataList = response;
+    const byteArray = await fileMetadataList.Body?.transformToByteArray();
+    return NextResponse.json(
+      { data: byteArray, contentType: fileMetadataList.ContentType },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error_message: error }, { status: 400 });
+  }
+}
