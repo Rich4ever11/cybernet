@@ -52,9 +52,20 @@ export default function UserDocuments({}: Props) {
       method: "POST",
       body: JSON.stringify(data),
     });
-    const documentByteArray = await res.arrayBuffer();
-    const documentBlob = new Blob([documentByteArray]);
+    // const documentByteArray = await res.arrayBuffer();
+    // const documentBlob = new Blob([documentByteArray], {
+    //   type: "application/pdf",
+    // });
+
+    const responseData = await res.json();
+    const byteArrayConverted = new Int8Array(
+      Object.values(responseData["data"])
+    );
+    const documentBlob = new Blob([byteArrayConverted], {
+      type: responseData["contentType"],
+    });
     const objectURL = URL.createObjectURL(documentBlob);
+    console.log(objectURL);
     setDynamicDocs([
       ...dynamicDocs,
       {
@@ -70,7 +81,10 @@ export default function UserDocuments({}: Props) {
   return (
     <div>
       <div>
-        <h1 className="text-2xl p-4">Uploaded Documents</h1>
+        <h1 className="text-4xl p-4 text-white">
+          {" "}
+          {firstName} {lastName} Documents
+        </h1>
       </div>
 
       <div>
@@ -159,11 +173,8 @@ export default function UserDocuments({}: Props) {
         </div>
 
         <div className="p-2 flex flex-row-reverse">
-          <button className="btn btn-outline btn-error btn-primary pl-4">
-            Send to Cybernet AI Red
-          </button>
-          <button className="btn btn-outline btn-info btn-primary mx-4">
-            Send to Cybernet AI Blue
+          <button className="btn btn-outline btn-primary pl-4">
+            Send to Cybernet AI
           </button>
         </div>
       </div>
@@ -173,7 +184,7 @@ export default function UserDocuments({}: Props) {
           style={{ height: "100vh", overflow: "hidden" }}
           className="px-4 bg-black"
         >
-          {dynamicDocs.length && (
+          {dynamicDocs.length ? (
             <DocViewer
               pluginRenderers={DocViewerRenderers}
               documents={dynamicDocs}
@@ -183,6 +194,8 @@ export default function UserDocuments({}: Props) {
                 overflow: "scroll",
               }}
             />
+          ) : (
+            <></>
           )}
         </div>
       </div>
