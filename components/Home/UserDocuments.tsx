@@ -52,11 +52,6 @@ export default function UserDocuments({}: Props) {
       method: "POST",
       body: JSON.stringify(data),
     });
-    // const documentByteArray = await res.arrayBuffer();
-    // const documentBlob = new Blob([documentByteArray], {
-    //   type: "application/pdf",
-    // });
-
     const responseData = await res.json();
     const byteArrayConverted = new Int8Array(
       Object.values(responseData["data"])
