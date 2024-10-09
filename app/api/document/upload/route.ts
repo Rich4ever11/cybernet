@@ -58,6 +58,7 @@ export async function POST(req: any, res: NextApiResponse<ResponseData>) {
     const userRequest = req.nextUrl.searchParams;
     const filename = userRequest.get("file");
     const userId = userRequest.get("id");
+    const contentType = userRequest.get("contentType");
     const base64 = await stream2buffer(req.body);
 
     //add a security measure to prevent any user from upload
@@ -68,7 +69,7 @@ export async function POST(req: any, res: NextApiResponse<ResponseData>) {
         Key: SavePath,
         Body: base64,
         ContentEncoding: "base64", // required
-        ContentType: "application/pdf",
+        ContentType: contentType,
       });
       const response = await s3Config.send(command);
     }

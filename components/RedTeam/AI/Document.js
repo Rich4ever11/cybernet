@@ -17,6 +17,7 @@ export const DocumentViewer = ({}) => {
     var data = new FormData();
     data.append("data", uploadFile);
     data.append("name", uploadFile.name);
+    data.append("contentType", uploadFile.type);
     const response = await fetch(
       `/api/document/upload?file=${uploadFile.name}&id=${id}`,
       {
