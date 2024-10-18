@@ -6,7 +6,7 @@ import { useUser } from "@/context/User/UserContext";
 import { getUserCookieSession } from "@/util/middleware/cookies";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { IoIosDocument } from "react-icons/io";
+import UserNoteCard from "./Card/UserNoteCard";
 
 type Props = {};
 
@@ -15,6 +15,7 @@ export default function UserDocuments({}: Props) {
   const [userDocuments, setUserDocuments] = useState([]);
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
+  const [renderedDocument, setRenderedDocument] = useState<string>("");
 
   const handleUserDocuments = async () => {
     const result = await getUserCookieSession();
@@ -39,7 +40,7 @@ export default function UserDocuments({}: Props) {
   };
 
   const handleDocumentRender = async (documentKey: string) => {
-    console.log(documentKey);
+    const documentName = parseDocument(documentKey);
     const data = {
       documentKey: documentKey,
     };
@@ -56,13 +57,17 @@ export default function UserDocuments({}: Props) {
     const byteArrayConverted = new Int8Array(
       Object.values(responseData["data"])
     );
+    const contentType =
+      responseData["contentType"] === "application/octet-stream"
+        ? "text/plain"
+        : responseData["contentType"];
     const documentBlob = new Blob([byteArrayConverted], {
-      type: responseData["contentType"],
+      type: contentType,
     });
     const objectURL = URL.createObjectURL(documentBlob);
-    console.log(objectURL);
+    setRenderedDocument(documentName);
+    console.log(contentType);
     setDynamicDocs([
-      ...dynamicDocs,
       {
         uri: objectURL,
       },
@@ -75,8 +80,8 @@ export default function UserDocuments({}: Props) {
 
   return (
     <div>
-      <div>
-        <h1 className="text-4xl p-4 text-white">
+      <div className="flex justify-center divider divider-primary p-10">
+        <h1 className="text-4xl py-8 text-white font-thin">
           {" "}
           {firstName} {lastName} Documents
         </h1>
@@ -175,23 +180,80 @@ export default function UserDocuments({}: Props) {
       </div>
 
       <div>
-        <div
-          style={{ height: "100vh", overflow: "hidden" }}
-          className="px-4 bg-black"
-        >
-          {dynamicDocs.length ? (
-            <DocViewer
-              pluginRenderers={DocViewerRenderers}
-              documents={dynamicDocs}
-              style={{
-                maxHeight: "100vh",
-                maxWidth: "100%",
-                overflow: "scroll",
-              }}
+        <div className="flex justify-center divider divider-primary p-10">
+          <h1 className="text-4xl py-8 text-white font-thin">
+            {" "}
+            {firstName} {lastName} Notes
+          </h1>
+        </div>
+        <div className="flex justify-center ">
+          <div className="flex overflow-x-scroll max-w-screen-2xl">
+            <UserNoteCard
+              noteId={1}
+              document="document.txt"
+              userQuestion="How is the weather?"
+              cybernetResponse="Looks Good Looks GoodLooks Good Looks Good Looks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks Good"
+              username={firstName + " " + lastName}
             />
-          ) : (
-            <></>
+            <UserNoteCard
+              noteId={1}
+              document="document.txt"
+              userQuestion="How is the weather?"
+              cybernetResponse="Looks Good Looks GoodLooks Good Looks Good Looks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks Good"
+              username={firstName + " " + lastName}
+            />
+            <UserNoteCard
+              noteId={1}
+              document="document.txt"
+              userQuestion="How is the weather?"
+              cybernetResponse="Looks Good Looks GoodLooks Good Looks Good Looks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks Good"
+              username={firstName + " " + lastName}
+            />
+            <UserNoteCard
+              noteId={1}
+              document="document.txt"
+              userQuestion="How is the weather?"
+              cybernetResponse="Looks Good Looks GoodLooks Good Looks Good Looks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks Good"
+              username={firstName + " " + lastName}
+            />
+            <UserNoteCard
+              noteId={1}
+              document="document.txt"
+              userQuestion="How is the weather?"
+              cybernetResponse="Looks Good Looks GoodLooks Good Looks Good Looks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks Good"
+              username={firstName + " " + lastName}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div className="m-8">
+          {dynamicDocs.length && (
+            <div className="flex justify-center divider divider-primary">
+              <h1 className="text-white font-thin text-4xl py-2">
+                {renderedDocument}
+              </h1>
+            </div>
           )}
+          <div
+            style={{ height: "100vh", overflow: "hidden" }}
+            className="px-4 bg-black"
+          >
+            {dynamicDocs.length ? (
+              <DocViewer
+                pluginRenderers={DocViewerRenderers}
+                documents={dynamicDocs}
+                style={{
+                  maxHeight: "100vh",
+                  maxWidth: "100%",
+                  overflow: "scroll",
+                }}
+              />
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
       </div>
     </div>

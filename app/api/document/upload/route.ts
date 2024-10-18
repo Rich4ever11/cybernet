@@ -73,7 +73,6 @@ export async function POST(req: any, res: NextApiResponse<ResponseData>) {
       });
       const response = await s3Config.send(command);
     }
-    console.log(userRequest);
     return NextResponse.json(
       { message: "[+} File Successfully Added" },
       { status: 200 }

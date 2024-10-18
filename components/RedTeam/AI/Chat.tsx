@@ -6,17 +6,27 @@ type Props = {};
 
 export default function Chat({}: Props) {
   const [question, setQuestion] = useState<string>("");
-  const [messageConversation, setMessageConversation] = useState({});
+  const [messages, setMessages] = useState<any>([]);
 
   const handleQuestionInput = async (event: {
     target: { value: React.SetStateAction<string> };
   }) => {
     setQuestion(event.target.value);
   };
+  console.log(messages);
 
   const handleAIRequest = async () => {
-    const data = {};
-    const res = await fetch("/api/ai/openai", {
+    const questionTimeInSeconds = new Date().getTime() / 1000;
+    const userMessage = {
+      time: questionTimeInSeconds,
+      content: question,
+      name: "John Henderson",
+      role: "user",
+    };
+    const data = {
+      question: question,
+    };
+    const res = await fetch("/api/ai/llama", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -25,45 +35,70 @@ export default function Chat({}: Props) {
       body: JSON.stringify(data),
     });
     const responseData = await res.json();
+    const aiAnswer = responseData.body.content;
+    const answerTimeInSeconds = new Date().getTime() / 1000;
+
     console.log(responseData);
+    setQuestion("");
+    const aiMessage = {
+      time: answerTimeInSeconds,
+      content: aiAnswer,
+      name: "Cybernet AI",
+      role: "assistant",
+    };
+    const newMessages = [userMessage, aiMessage];
+    setMessages([...messages, ...newMessages]);
   };
 
   return (
     <>
-      <div
-        style={{ height: "90vh", overflow: "scroll" }}
-        className="grid grid-cols-1 place-content-end"
-      >
-        <div className="">
-          <div className="chat chat-start">
-            <div className="chat-image avatar">
-              <div className="w-10 rounded-full">
-                <GiCyberEye color={"white"} size={42} />{" "}
-              </div>
-            </div>
-            <div className="chat-header text-white">
-              Cybernet AI <time className="text-xs opacity-50">12:45</time>
-            </div>
-            <div className="chat-bubble text-white">
-              You were the Chosen One!
-            </div>
-          </div>
-          <div className="chat chat-end">
-            <div className="chat-image avatar">
-              <div className="w-10 rounded-full border-2 border-white">
-                <img
-                  alt="Tailwind CSS chat bubble component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                />
-              </div>
-            </div>
-            <div className="chat-header text-white">
-              Anakin <time className="text-xs opacity-50">12:46</time>
-            </div>
-            <div className="chat-bubble text-white">
-              What is the main information in this document
-            </div>
-            <div className="chat-footer opacity-50">Seen at 12:46</div>
+      <div className="">
+        <div className="flex flex-col-reverse place-content-end">
+          <div
+            style={{ height: "90vh" }}
+            className="overflow-y-scroll place-content-end"
+          >
+            {messages.map(
+              (
+                message: {
+                  time: number;
+                  content: string;
+                  role: string;
+                },
+                index: number
+              ) => (
+                <div>
+                  <div
+                    key={index}
+                    className={`chat chat-${
+                      message.role === "user" ? "end" : "start"
+                    }`}
+                  >
+                    <div className="chat-image avatar">
+                      {message.role === "user" ? (
+                        <div className="w-10 rounded-full border-2 border-white">
+                          <img
+                            alt="Tailwind CSS chat bubble component"
+                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-10 rounded-full">
+                          <GiCyberEye color={"white"} size={42} />{" "}
+                        </div>
+                      )}
+                    </div>
+                    <div className="chat-header text-white">
+                      {message.role}{" "}
+                      <time className="text-xs opacity-50">{message.time}</time>
+                    </div>
+                    <div className="chat-bubble text-white">
+                      {message.content}
+                    </div>
+                  </div>
+                </div>
+              )
+            )}
           </div>
         </div>
       </div>

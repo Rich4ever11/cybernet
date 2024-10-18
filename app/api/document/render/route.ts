@@ -62,6 +62,7 @@ export async function POST(req: any, res: NextApiResponse<ResponseData>) {
     const response = await s3Config.send(command);
     const fileMetadataList = response;
     const byteArray = await fileMetadataList.Body?.transformToByteArray();
+    console.log(fileMetadataList.ContentType);
     return NextResponse.json(
       { data: byteArray, contentType: fileMetadataList.ContentType },
       { status: 200 }

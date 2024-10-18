@@ -14,13 +14,14 @@ export default function NavBarAuth() {
   const handleUserCookie = async () => {
     console.log(userLoggedIn);
     const result = await getUserCookieSession();
+    console.log(result);
     if (result) {
       const userInfo = result.userData;
       console.log(userInfo);
       setUserData(userInfo);
-    } else {
-      router.push("/sign-in");
+      return;
     }
+    router.push("/sign-in");
   };
   useEffect(() => {
     handleUserCookie();
