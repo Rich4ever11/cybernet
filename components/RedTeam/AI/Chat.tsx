@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { FiArrowUpCircle } from "react-icons/fi";
 import { GiCyberEye } from "react-icons/gi";
 
-type Props = {};
+type Props = {
+  fileContents: string;
+};
 
-export default function Chat({}: Props) {
+export default function Chat({ fileContents }: Props) {
   const [question, setQuestion] = useState<string>("");
   const [messages, setMessages] = useState<any>([]);
 
@@ -13,7 +15,6 @@ export default function Chat({}: Props) {
   }) => {
     setQuestion(event.target.value);
   };
-  console.log(messages);
 
   const handleAIRequest = async () => {
     const questionTimeInSeconds = new Date().getTime() / 1000;
@@ -23,6 +24,8 @@ export default function Chat({}: Props) {
       name: "John Henderson",
       role: "user",
     };
+    setMessages([...messages, ...[userMessage]]);
+
     const data = {
       question: question,
     };
@@ -46,8 +49,7 @@ export default function Chat({}: Props) {
       name: "Cybernet AI",
       role: "assistant",
     };
-    const newMessages = [userMessage, aiMessage];
-    setMessages([...messages, ...newMessages]);
+    setMessages([...messages, ...[aiMessage]]);
   };
 
   return (

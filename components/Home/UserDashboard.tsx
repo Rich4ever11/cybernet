@@ -81,16 +81,12 @@ export default function UserDocuments({}: Props) {
   return (
     <div>
       <div className="flex justify-center divider divider-primary p-10">
-        <h1 className="text-4xl py-8 text-white font-thin">
-          {" "}
-          {firstName} {lastName} Documents
-        </h1>
+        <h1 className="text-6xl py-8 text-slate-400 font-thin"> Documents</h1>
       </div>
 
       <div>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto overflow-y-scroll max-w-full max-h-screen">
           <table className="table">
-            {/* head */}
             <thead>
               <tr>
                 <th></th>
@@ -115,7 +111,7 @@ export default function UserDocuments({}: Props) {
                   <tr key={index}>
                     <th>
                       <label>
-                        <input type="checkbox" className="checkbox" />
+                        {/* <input type="checkbox" className="checkbox" /> */}
                       </label>
                     </th>
                     <td>
@@ -159,7 +155,6 @@ export default function UserDocuments({}: Props) {
               )}
             </tbody>
 
-            {/* foot */}
             <tfoot>
               <tr>
                 <th></th>
@@ -181,10 +176,7 @@ export default function UserDocuments({}: Props) {
 
       <div>
         <div className="flex justify-center divider divider-primary p-10">
-          <h1 className="text-4xl py-8 text-white font-thin">
-            {" "}
-            {firstName} {lastName} Notes
-          </h1>
+          <h1 className="text-6xl py-8 text-slate-400 font-thin"> Notes</h1>
         </div>
         <div className="flex justify-center ">
           <div className="flex overflow-x-scroll max-w-screen-2xl">
@@ -229,31 +221,31 @@ export default function UserDocuments({}: Props) {
 
       <div>
         <div className="m-8">
-          {dynamicDocs.length && (
-            <div className="flex justify-center divider divider-primary">
-              <h1 className="text-white font-thin text-4xl py-2">
-                {renderedDocument}
-              </h1>
-            </div>
+          {dynamicDocs.length ? (
+            <>
+              <div className="flex justify-center divider divider-primary">
+                <h1 className="text-white font-thin text-4xl py-2">
+                  {renderedDocument}
+                </h1>
+              </div>
+              <div
+                style={{ height: "100vh", overflow: "hidden" }}
+                className="px-4 bg-black"
+              >
+                <DocViewer
+                  pluginRenderers={DocViewerRenderers}
+                  documents={dynamicDocs}
+                  style={{
+                    maxHeight: "100vh",
+                    maxWidth: "100%",
+                    overflow: "scroll",
+                  }}
+                />
+              </div>
+            </>
+          ) : (
+            <></>
           )}
-          <div
-            style={{ height: "100vh", overflow: "hidden" }}
-            className="px-4 bg-black"
-          >
-            {dynamicDocs.length ? (
-              <DocViewer
-                pluginRenderers={DocViewerRenderers}
-                documents={dynamicDocs}
-                style={{
-                  maxHeight: "100vh",
-                  maxWidth: "100%",
-                  overflow: "scroll",
-                }}
-              />
-            ) : (
-              <></>
-            )}
-          </div>
         </div>
       </div>
     </div>

@@ -1,13 +1,13 @@
 "use client";
 
 import NavBarAuth from "@/components/Navbar/NavBarAuth";
-import UserDocuments from "@/components/Home/UserDocuments";
+import UserDashboard from "@/components/Home/UserDashboard";
 
 export default function Home() {
   return (
     <div className="bg-black grid font-[family-name:var(--font-geist-sans)]">
       <NavBarAuth />
-      <UserDocuments />
+      <UserDashboard />
     </div>
   );
 }

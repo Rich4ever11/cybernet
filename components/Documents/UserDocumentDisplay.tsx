@@ -2,11 +2,20 @@ import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import React, { FC, useState } from "react";
 import { getUserCookieSession } from "@/util/middleware/cookies";
 import "react-pdf/dist/Page/TextLayer.css";
+import { IDocument } from "react-doc-viewer";
 
-export const DocumentViewer = ({}) => {
-  const [dynamicDocs, setDynamicDocs] = useState([]);
+type Props = {
+  dynamicDocsProp: any[];
+  handleFileContentDisplayCallback?: (fileContent: string) => void;
+};
 
-  const handleFileUpload = async (event) => {
+export const UserDocumentDisplay = ({
+  dynamicDocsProp,
+  handleFileContentDisplayCallback,
+}: Props) => {
+  const [dynamicDocs, setDynamicDocs] = useState<any>(dynamicDocsProp);
+
+  const handleFileUpload = async (event: any) => {
     const uploadFile = event.target.files[0];
     const userDataResult = await getUserCookieSession();
     const { id } = userDataResult.userData;
@@ -15,7 +24,7 @@ export const DocumentViewer = ({}) => {
     data.append("name", uploadFile.name);
     data.append("contentType", uploadFile.type);
     const response = await fetch(
-      `/api/document/upload?file=${uploadFile.name}&id=${id}`,
+      `/api/document/upload?file=${uploadFile.name}&id=${id}&contentType=${uploadFile.type}`,
       {
         method: "POST",
         body: data,
@@ -31,6 +40,10 @@ export const DocumentViewer = ({}) => {
     }
   };
 
+  const handleDocumentChange = (document: IDocument) => {
+    console.log(document.fileData);
+  };
+
   return (
     <>
       <div>
@@ -38,11 +51,11 @@ export const DocumentViewer = ({}) => {
           style={{ height: "100vh", overflow: "hidden" }}
           className="px-4 bg-black"
         >
-          <div className="bg-neutral-900">
+          <div className="bg-black">
             <div className="label">
               <span className="label-text"></span>
               <span className="label-text-alt text-white">
-                Upload Red Teaming Cybersecurity Documents
+                Document Uploads are Saved
               </span>
             </div>
             <input
@@ -55,6 +68,7 @@ export const DocumentViewer = ({}) => {
             <DocViewer
               pluginRenderers={DocViewerRenderers}
               documents={dynamicDocs}
+              onDocumentChange={handleDocumentChange}
               style={{
                 maxHeight: "100vh",
                 maxWidth: "100%",

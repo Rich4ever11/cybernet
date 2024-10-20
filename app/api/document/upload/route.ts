@@ -53,6 +53,14 @@ async function stream2buffer(stream: any) {
   }
 }
 
+function verifyActiveUser(userId: string) {
+  return [
+    "b88e1aff-d4fc-412a-8d82-f78fd7269d1f",
+    "f5ba7b15-4b89-4fc3-b0e1-8975141d7075",
+    "b5ff1895-6f98-4ee8-92ec-411bc31f23cc",
+  ].includes(userId);
+}
+
 export async function POST(req: any, res: NextApiResponse<ResponseData>) {
   try {
     const userRequest = req.nextUrl.searchParams;
