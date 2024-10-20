@@ -18,6 +18,7 @@ export default function Chat({ fileContents }: Props) {
 
   const handleAIRequest = async () => {
     const questionTimeInSeconds = new Date().getTime() / 1000;
+    const fullQuestion = `I am currently examining a file that holds this value: ${fileContents}\nPlease Answer this question:${question}`;
     const userMessage = {
       time: questionTimeInSeconds,
       content: question,
@@ -25,9 +26,10 @@ export default function Chat({ fileContents }: Props) {
       role: "user",
     };
     setMessages([...messages, ...[userMessage]]);
+    setQuestion("");
 
     const data = {
-      question: question,
+      question: fullQuestion,
     };
     const res = await fetch("/api/ai/llama", {
       headers: {
@@ -42,14 +44,13 @@ export default function Chat({ fileContents }: Props) {
     const answerTimeInSeconds = new Date().getTime() / 1000;
 
     console.log(responseData);
-    setQuestion("");
     const aiMessage = {
       time: answerTimeInSeconds,
       content: aiAnswer,
       name: "Cybernet AI",
       role: "assistant",
     };
-    setMessages([...messages, ...[aiMessage]]);
+    setMessages([...messages, ...[userMessage, aiMessage]]);
   };
 
   return (
@@ -69,9 +70,8 @@ export default function Chat({ fileContents }: Props) {
                 },
                 index: number
               ) => (
-                <div>
+                <div key={index}>
                   <div
-                    key={index}
                     className={`chat chat-${
                       message.role === "user" ? "end" : "start"
                     }`}

@@ -51,9 +51,17 @@ export default function ({ userDocuments }: Props) {
     const documentBlob = new Blob([byteArrayConverted], {
       type: contentType,
     });
-    const documentText = await documentBlob.text();
+    let result = "";
+    switch (contentType) {
+      case "text/plain":
+        result = await documentBlob.text();
+        break;
+      case "application/pdf":
+        result = await pdfToText(documentBlob);
+        break;
+    }
     const objectURL = URL.createObjectURL(documentBlob);
-    const result = await pdfToText(documentBlob);
+    console.log(result, contentType);
     setFileContents(result);
     setDynamicDocs([
       {
@@ -94,8 +102,8 @@ export default function ({ userDocuments }: Props) {
               <h1 className="text-white font-3xl">Saved Documents</h1>
             </div>
             <ul className="menu bg-black text-base-content min-h-full w-80 p-4">
-              {userDocuments.map((userDocument) => (
-                <li>
+              {userDocuments.map((userDocument, index) => (
+                <li key={index}>
                   <a
                     className="text-white"
                     onClick={() => handleDocumentRender(userDocument.Key)}
