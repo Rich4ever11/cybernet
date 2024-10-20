@@ -47,7 +47,7 @@ export default function ({ userDocuments }: Props) {
     const byteArrayConverted = new Int8Array(
       Object.values(responseData["data"])
     );
-    const contentType = responseData["contentType"];
+    const contentType = responseData.metadata.contentType;
     const documentBlob = new Blob([byteArrayConverted], {
       type: contentType,
     });

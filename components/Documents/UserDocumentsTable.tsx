@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { UserDocumentDisplay } from "@/components/Documents/UserDocumentDisplay";
+import { IoDocumentLockSharp } from "react-icons/io5";
 
 interface DocumentMetaData {
   Key: string;
@@ -7,6 +8,14 @@ interface DocumentMetaData {
   ETag: string;
   Size: string;
   StorageClass: string;
+}
+
+interface DocumentRenderMetadata {
+  contentType: string;
+  expiration: string;
+  lastModified: Date;
+  contentLength: number;
+  encryption: string;
 }
 
 type Props = {
@@ -23,15 +32,16 @@ export default function UserDocumentsTable({
   const [dynamicDocs, setDynamicDocs] = useState<any>([]);
   const [checkedFile, setCheckedFile] = useState<any>("");
   const [renderedDocument, setRenderedDocument] = useState<string>("");
+  const [renderDocumentMetadata, setRenderDocumentMetadata] =
+    useState<DocumentRenderMetadata>();
 
-  const parseDocument = (fullDocumentPath: string) => {
+  const parseDocumentName = (fullDocumentPath: string) => {
     const pathSplit = fullDocumentPath.split("/");
     return pathSplit[pathSplit.length - 1];
   };
 
   const handleDocumentRender = async (documentKey: string) => {
     setDynamicDocs([]);
-    const documentName = parseDocument(documentKey);
     const data = {
       documentKey: documentKey,
     };
@@ -48,12 +58,15 @@ export default function UserDocumentsTable({
     const byteArrayConverted = new Int8Array(
       Object.values(responseData["data"])
     );
-    const contentType = responseData["contentType"];
+    const contentType = responseData.metadata.contentType;
     const documentBlob = new Blob([byteArrayConverted], {
       type: contentType,
     });
+
+    console.log(responseData.metadata);
     const objectURL = URL.createObjectURL(documentBlob);
-    setRenderedDocument(documentName);
+    setRenderedDocument(documentKey);
+    setRenderDocumentMetadata(responseData.metadata);
     setDynamicDocs([
       {
         uri: objectURL,
@@ -80,10 +93,12 @@ export default function UserDocumentsTable({
 
   return (
     <div>
-      <div className="py-6 px-2 my-2 bg-black">
-        <h1 className="text-6xl font-thin">Document Center</h1>
+      <div className="py-6 px-2  bg-black">
+        <h1 className="text-6xl font-thin flex">
+          Document Center <IoDocumentLockSharp className="mx-2" />
+        </h1>
       </div>
-      <div className="flex flex-row h-full">
+      <div className="flex flex-row h-1/2">
         <div className="basis-6/12 bg-black">
           <div className="overflow-x-auto bg-black max-w-full max-h-screen">
             <table className="table bg-black">
@@ -108,7 +123,13 @@ export default function UserDocumentsTable({
                     },
                     index
                   ) => (
-                    <tr key={index}>
+                    <tr
+                      key={index}
+                      className={
+                        (renderedDocument === document.Key && `bg-slate-800`) ||
+                        ""
+                      }
+                    >
                       <th>
                         <label>
                           <input
@@ -140,7 +161,7 @@ export default function UserDocumentsTable({
                         </div>
                       </td>
                       <td>
-                        {parseDocument(document.Key)}
+                        {parseDocumentName(document.Key)}
                         <br />
                         <span className="badge badge-ghost badge-sm">
                           {document.LastModified}
@@ -170,14 +191,65 @@ export default function UserDocumentsTable({
                 </tr>
               </tfoot>
             </table>
-            <div className="p-4">
-              <button
-                className="btn text-white bg-red-950"
-                onClick={handleDocumentDeletion}
-              >
-                Delete Documents
-              </button>
-            </div>
+            {checkedFile && (
+              <div className="p-4">
+                <button
+                  className="btn text-white bg-red-950"
+                  onClick={handleDocumentDeletion}
+                >
+                  Delete Documents
+                </button>
+              </div>
+            )}
+            <div className="divider"></div>
+
+            {renderDocumentMetadata && (
+              <div className="m-2">
+                <div className="bg-black image-full w-full shadow-xl">
+                  <div className="card-body">
+                    <h2 className="card-title text-white text-6xl font-thin ">
+                      {parseDocumentName(renderedDocument)}
+                    </h2>
+
+                    <div className="divider"></div>
+
+                    <div className="bg-slate-900 p-8">
+                      <h2 className="card-title text-white text-4xl font-thin ">
+                        {"Document Information"}
+                      </h2>
+                      <div className="divider"></div>
+
+                      <p className="text-white text-2xl font-thin">
+                        <span className="text-slate-300">
+                          Document Expire Date:
+                        </span>{" "}
+                        {renderDocumentMetadata.expiration.split('"')[1]}
+                      </p>
+
+                      <p className="text-white text-2xl font-thin">
+                        <span className="text-slate-300">
+                          Document Content Type:{" "}
+                        </span>{" "}
+                        {renderDocumentMetadata.contentType}
+                      </p>
+                      <p className="text-white text-2xl font-thin">
+                        <span className="text-slate-300">
+                          Document Content Length:{" "}
+                        </span>{" "}
+                        {renderDocumentMetadata.contentLength}
+                      </p>
+
+                      <p className="text-white text-2xl font-thin">
+                        <span className="text-slate-300">
+                          Document Encryption Type:{" "}
+                        </span>{" "}
+                        {renderDocumentMetadata.encryption}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
