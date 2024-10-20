@@ -10,7 +10,7 @@ Cybernet AI is a new age AI driven cybersecurity software. Cybernet AI's main fo
 
 ![image](https://github.com/user-attachments/assets/7422c1e4-7d8f-42c0-92b1-0684d98da7eb)
 
-![image](https://github.com/user-attachments/assets/9e16f6cd-392b-42dc-b11c-55dc17637355)
+![image](https://github.com/user-attachments/assets/833c001b-c54d-4c6a-b870-d2ea9438b319)
 
 ![image](https://github.com/user-attachments/assets/427f1eba-3e6d-4e0b-b4fb-bfc55d5faad2)
 
