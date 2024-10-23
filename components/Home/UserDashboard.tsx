@@ -7,6 +7,7 @@ import { getUserCookieSession } from "@/util/middleware/cookies";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import UserNoteCard from "./Card/UserNoteCard";
+import Link from "next/link";
 
 type Props = {};
 
@@ -169,7 +170,12 @@ export default function UserDocuments({}: Props) {
 
         <div className="p-2 flex flex-row-reverse">
           <button className="btn btn-outline btn-primary pl-4">
-            Send to Cybernet AI
+            <Link
+              href="/documents"
+              className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            >
+              View Document Dashboard
+            </Link>
           </button>
         </div>
       </div>
@@ -194,28 +200,13 @@ export default function UserDocuments({}: Props) {
               cybernetResponse="Looks Good Looks GoodLooks Good Looks Good Looks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks Good"
               username={firstName + " " + lastName}
             />
-            <UserNoteCard
-              noteId={1}
-              document="document.txt"
-              userQuestion="How is the weather?"
-              cybernetResponse="Looks Good Looks GoodLooks Good Looks Good Looks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks Good"
-              username={firstName + " " + lastName}
-            />
-            <UserNoteCard
-              noteId={1}
-              document="document.txt"
-              userQuestion="How is the weather?"
-              cybernetResponse="Looks Good Looks GoodLooks Good Looks Good Looks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks Good"
-              username={firstName + " " + lastName}
-            />
-            <UserNoteCard
-              noteId={1}
-              document="document.txt"
-              userQuestion="How is the weather?"
-              cybernetResponse="Looks Good Looks GoodLooks Good Looks Good Looks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks Good"
-              username={firstName + " " + lastName}
-            />
           </div>
+        </div>
+
+        <div className="p-2 flex flex-row-reverse">
+          <button className="btn btn-outline btn-primary pl-4">
+            View Notes Dashboard
+          </button>
         </div>
       </div>
 

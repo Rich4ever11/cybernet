@@ -20,7 +20,7 @@ export default function UserNoteCard({
     <div>
       <div className="card bg-zinc-950 w-96 shadow-xl m-8">
         <div className="card-body">
-          <h2 className="card-title font-thin text-2xl">Note Card {noteId}</h2>
+          <h2 className="card-title font-thin text-4xl">Note Card {noteId}</h2>
           <div className="divider">{document}</div>
           <div className="overflow-y-scroll max-h-72">
             <div className="chat chat-start">

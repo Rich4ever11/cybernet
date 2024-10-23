@@ -20,12 +20,14 @@ interface DocumentRenderMetadata {
 
 type Props = {
   userDocuments: DocumentMetaData[];
+  updateUserDocuments?: any;
   firstName: string;
   lastName: string;
 };
 
 export default function UserDocumentsTable({
   userDocuments,
+  updateUserDocuments,
   firstName,
   lastName,
 }: Props) {
@@ -34,6 +36,8 @@ export default function UserDocumentsTable({
   const [renderedDocument, setRenderedDocument] = useState<string>("");
   const [renderDocumentMetadata, setRenderDocumentMetadata] =
     useState<DocumentRenderMetadata>();
+
+  const [docUpdate, setDocUpdate] = useState<boolean>(false);
 
   const parseDocumentName = (fullDocumentPath: string) => {
     const pathSplit = fullDocumentPath.split("/");
@@ -72,9 +76,10 @@ export default function UserDocumentsTable({
         uri: objectURL,
       },
     ]);
+    updateUserDocuments();
   };
 
-  const handleDocumentDeletion = () => {
+  const handleDocumentDeletion = async () => {
     if (checkedFile) {
       const data = {
         documentKey: checkedFile,
@@ -88,6 +93,8 @@ export default function UserDocumentsTable({
         method: "DELETE",
         body: JSON.stringify(data),
       });
+      const response = (await result).json;
+      updateUserDocuments();
     }
   };
 

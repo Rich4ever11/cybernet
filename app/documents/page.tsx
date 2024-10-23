@@ -40,6 +40,7 @@ export default function route({}: Props) {
       <div className="">
         <UserDocumentsTable
           userDocuments={userDocuments}
+          updateUserDocuments={handleUserDocuments}
           firstName={firstName}
           lastName={lastName}
         />

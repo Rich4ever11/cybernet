@@ -66,7 +66,11 @@ export async function POST(
       username: result?.username,
       id: result?.id,
     };
-    return NextResponse.json({ body: data }, { status: 200 });
+    if (data.username === req_username) {
+      return NextResponse.json({ body: data }, { status: 200 });
+    } else {
+      return NextResponse.json({ message: "No Users Found" }, { status: 404 });
+    }
   } else {
     return NextResponse.json({ message: "No Users Found" }, { status: 404 });
   }

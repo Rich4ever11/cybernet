@@ -4,6 +4,7 @@ import { GetObjectCommand, ListObjectsCommand } from "@aws-sdk/client-s3";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 import { DateTime } from "aws-sdk/clients/devicefarm";
+import { verifyActiveUser } from "@/util/authenticateRequest";
 
 type ResponseData = {
   message: string;
@@ -25,27 +26,33 @@ export async function GET(req: any, res: NextApiResponse<ResponseData>) {
   try {
     const userRequest = req.nextUrl.searchParams;
     const userId = userRequest.get("id");
-    const command = new ListObjectsCommand({
-      Bucket: process.env.S3_BUCKET_NAME,
-      Delimiter: "/",
-      Prefix: `${userId}/`,
-    });
-    const response = await s3Config.send(command);
-    const fileMetadataList: any = response.Contents || [];
-    const returnValue = fileMetadataList
-      .filter((fileMetaData: FileMetaData) => {
-        return fileMetaData.Size > 0;
-      })
-      .map((fileMetaData: FileMetaData) => {
-        return {
-          Key: fileMetaData.Key,
-          LastModified: fileMetaData.LastModified,
-          ETag: fileMetaData.ETag,
-          Size: fileMetaData.Size,
-          StorageClass: fileMetaData.StorageClass,
-        };
+    const verifyUser = await verifyActiveUser(userId);
+
+    if (verifyUser) {
+      const command = new ListObjectsCommand({
+        Bucket: process.env.S3_BUCKET_NAME,
+        Delimiter: "/",
+        Prefix: `${userId}/`,
       });
-    return NextResponse.json({ data: returnValue }, { status: 200 });
+      const response = await s3Config.send(command);
+      const fileMetadataList: any = response.Contents || [];
+      const returnValue = fileMetadataList
+        .filter((fileMetaData: FileMetaData) => {
+          return fileMetaData.Size > 0;
+        })
+        .map((fileMetaData: FileMetaData) => {
+          return {
+            Key: fileMetaData.Key,
+            LastModified: fileMetaData.LastModified,
+            ETag: fileMetaData.ETag,
+            Size: fileMetaData.Size,
+            StorageClass: fileMetaData.StorageClass,
+          };
+        });
+      return NextResponse.json({ data: returnValue }, { status: 200 });
+    } else {
+      return NextResponse.json({ error_message: "NOT FOUND" }, { status: 404 });
+    }
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error_message: error }, { status: 400 });
