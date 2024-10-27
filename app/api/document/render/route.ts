@@ -61,7 +61,7 @@ export async function GET(req: any, res: NextApiResponse<ResponseData>) {
 
 export async function POST(req: any, res: NextApiResponse<ResponseData>) {
   try {
-    const { documentKey } = await new Response(req.body).json();
+    const { documentKey} = await new Response(req.body).json();
     const command = new GetObjectCommand({
       Bucket: process.env.S3_BUCKET_NAME,
       Key: documentKey,

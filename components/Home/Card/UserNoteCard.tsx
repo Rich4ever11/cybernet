@@ -23,17 +23,6 @@ export default function UserNoteCard({
           <h2 className="card-title font-thin text-4xl">Note Card {noteId}</h2>
           <div className="divider">{document}</div>
           <div className="overflow-y-scroll max-h-72">
-            <div className="chat chat-start">
-              <div className="chat-image avatar">
-                <div className="w-10 rounded-full">
-                  <GiCyberEye color={"white"} size={42} />{" "}
-                </div>
-              </div>
-              <div className="chat-header text-white">
-                Cybernet AI <time className="text-xs opacity-50">12:45</time>
-              </div>
-              <div className="chat-bubble text-white">{cybernetResponse}</div>
-            </div>
             <div className="chat chat-end">
               <div className="chat-image avatar">
                 <div className="w-10 rounded-full border-2 border-white">
@@ -48,6 +37,17 @@ export default function UserNoteCard({
               </div>
               <div className="chat-bubble text-white">{userQuestion}</div>
               <div className="chat-footer opacity-50">Seen at 12:46</div>
+            </div>
+            <div className="chat chat-start">
+              <div className="chat-image avatar">
+                <div className="w-10 rounded-full">
+                  <GiCyberEye color={"white"} size={42} />{" "}
+                </div>
+              </div>
+              <div className="chat-header text-white">
+                Cybernet AI <time className="text-xs opacity-50">12:45</time>
+              </div>
+              <div className="chat-bubble text-white">{cybernetResponse}</div>
             </div>
           </div>
         </div>

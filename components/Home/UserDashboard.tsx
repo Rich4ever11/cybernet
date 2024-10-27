@@ -190,14 +190,7 @@ export default function UserDocuments({}: Props) {
               noteId={1}
               document="document.txt"
               userQuestion="How is the weather?"
-              cybernetResponse="Looks Good Looks GoodLooks Good Looks Good Looks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks Good"
-              username={firstName + " " + lastName}
-            />
-            <UserNoteCard
-              noteId={1}
-              document="document.txt"
-              userQuestion="How is the weather?"
-              cybernetResponse="Looks Good Looks GoodLooks Good Looks Good Looks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks GoodLooks Good"
+              cybernetResponse="Looks Good in Maryland :D"
               username={firstName + " " + lastName}
             />
           </div>
