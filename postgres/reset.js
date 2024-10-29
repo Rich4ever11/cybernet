@@ -2,7 +2,7 @@ import { pool } from "./database.js";
 
 export const createNotesTable = async () => {
   const createTableQuery = `
-    DROP TABLE IF EXISTS location CASCADE;
+    DROP TABLE IF EXISTS notes CASCADE;
 
     CREATE TABLE IF NOT EXISTS notes (
         id SERIAL PRIMARY KEY,
