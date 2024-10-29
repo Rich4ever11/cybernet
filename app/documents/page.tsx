@@ -5,6 +5,7 @@ import UserDocuments from "@/components/Home/UserDashboard";
 import NavBarAuth from "@/components/Navbar/NavBarAuth";
 import { getUserCookieSession } from "@/util/middleware/cookies";
 import React, { useEffect, useState } from "react";
+import { IoDocumentLockSharp } from "react-icons/io5";
 
 type Props = {};
 
@@ -38,6 +39,11 @@ export default function route({}: Props) {
     <div>
       <NavBarAuth />
       <div className="">
+        <div className="py-6 px-2  bg-black">
+          <h1 className="text-6xl font-thin flex">
+            Document Center <IoDocumentLockSharp className="mx-2" />
+          </h1>
+        </div>
         <UserDocumentsTable
           userDocuments={userDocuments}
           updateUserDocuments={handleUserDocuments}

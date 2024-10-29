@@ -100,11 +100,6 @@ export default function UserDocumentsTable({
 
   return (
     <div>
-      <div className="py-6 px-2  bg-black">
-        <h1 className="text-6xl font-thin flex">
-          Document Center <IoDocumentLockSharp className="mx-2" />
-        </h1>
-      </div>
       <div className="flex flex-row h-1/2">
         <div className="basis-6/12 bg-black">
           <div className="overflow-x-auto bg-black max-w-full max-h-screen">
