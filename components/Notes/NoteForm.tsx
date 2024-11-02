@@ -69,6 +69,7 @@ export default function NoteForm({ userDocuments, userId }: Props) {
 
         <button
           className="btn btn-outline btn-primary"
+          disabled={userDocuments.length == 0}
           onClick={handleNoteCreation}
         >
           Submit

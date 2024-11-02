@@ -41,7 +41,7 @@ export default function Notes({}: Props) {
   return (
     <div>
       <NavBarAuth />
-      <div className="py-6 px-2  bg-black">
+      <div className="py-6 px-2  bg-black overflow-scroll w-screen">
         <h1 className="text-6xl font-thin flex">
           Notes Center <FaStickyNote className="mx-2" />
         </h1>
@@ -49,7 +49,7 @@ export default function Notes({}: Props) {
       <div className="flex">
         {showNotesForm && (
           <div className="basis-1/3">
-            {userDocuments && (
+            {userDocuments && userId && (
               <NoteForm userDocuments={userDocuments} userId={userId} />
             )}
           </div>
@@ -63,7 +63,7 @@ export default function Notes({}: Props) {
               Create Note
             </button>
           </div>
-          <NotesTable />
+          {userId && <NotesTable user_id={userId} />}
         </div>
       </div>
     </div>
