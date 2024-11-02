@@ -40,8 +40,8 @@ export default function route({}: Props) {
       <NavBarAuth />
       <div className="">
         <div className="py-6 px-2  bg-black">
-          <h1 className="text-6xl font-thin flex">
-            Document Center <IoDocumentLockSharp className="mx-2" />
+          <h1 className="text-6xl font-thin flex divider divider-primary">
+            Document Center <IoDocumentLockSharp className="mx-2" size={200} />
           </h1>
         </div>
         <UserDocumentsTable

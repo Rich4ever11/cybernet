@@ -42,8 +42,8 @@ export default function Notes({}: Props) {
     <div>
       <NavBarAuth />
       <div className="py-6 px-2  bg-black overflow-scroll w-screen">
-        <h1 className="text-6xl font-thin flex">
-          Notes Center <FaStickyNote className="mx-2" />
+        <h1 className="text-6xl font-thin flex divider divider-primary">
+          Notes Center <FaStickyNote className="mx-2" size={175} />
         </h1>
       </div>
       <div className="flex">
