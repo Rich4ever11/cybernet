@@ -10,9 +10,9 @@ import { redirect, useRouter } from "next/navigation";
 import router from "next/router";
 import Link from "next/link";
 
-type Props = {};
+// type Props = {};
 
-export default function SignInCard({}: Props) {
+export default function SignInCard() {
   const router = useRouter();
   const { setUserInfo, setUserLoggedIn } = useUser();
   const [loading, setLoading] = useState<boolean>(false);
@@ -118,7 +118,8 @@ export default function SignInCard({}: Props) {
 
         <div className="py-2">
           <p className="text-gray-600">
-            Don't have an account? <Link href="/sign-up">Register Here</Link>
+            {"Don't have an account?"}{" "}
+            <Link href="/sign-up">Register Here</Link>
           </p>
         </div>
       </form>

@@ -13,7 +13,7 @@ type Props = {
   version: string;
 };
 
-export default function ({
+export default function NmapCard({
   port,
   conf,
   cpe,

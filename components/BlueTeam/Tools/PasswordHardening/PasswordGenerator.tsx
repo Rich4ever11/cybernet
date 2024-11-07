@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { passwordTips } from "./passwordTips.js";
 import { FaClipboard } from "react-icons/fa";
 
-type Props = {};
+// type Props = {};
 
 const specialCharactersList = [
   "~",
@@ -41,7 +41,7 @@ const specialCharactersList = [
   "/",
 ];
 
-export default function PasswordGenerator({}: Props) {
+export default function PasswordGenerator() {
   const [lowerCaseLetters, setLowerCaseLetters] = useState<boolean>(true);
   const [upperCaseLetters, setUpperCaseLetters] = useState<boolean>(true);
   const [numbers, setNumbers] = useState<boolean>(true);

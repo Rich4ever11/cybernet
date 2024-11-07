@@ -4,9 +4,9 @@ import PatchAndUpdateModule from "@/components/BlueTeam/Tools/PatchAndUpdateFeed
 import PhisingDetectionModule from "@/components/BlueTeam/Tools/PhisingDetection/PhisingDetectionModule";
 import NavBarAuth from "@/components/Navbar/NavBarAuth";
 
-type Props = {};
+// type Props = {};
 
-export default function page({}: Props) {
+export default function BlueTeamTools() {
   return (
     <div>
       <NavBarAuth />

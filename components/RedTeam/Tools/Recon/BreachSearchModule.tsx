@@ -6,9 +6,9 @@ import { PiPasswordBold } from "react-icons/pi";
 import { FaLock } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 
-type Props = {};
+// type Props = {};
 
-export default function BreachSearch({}: Props) {
+export default function BreachSearch() {
   const [keywordSearch, setKeywordSearch] = useState("");
   const [breachData, setBreachData] = useState([]);
   const [resultMessage, setResultMessage] = useState("");

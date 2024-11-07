@@ -51,8 +51,10 @@ export default function NoteForm({ userDocuments, userId }: Props) {
           <option disabled selected>
             Select Document
           </option>
-          {userDocuments.map((document) => (
-            <option value={document}>{parseDocumentName(document)}</option>
+          {userDocuments.map((document, index: number) => (
+            <option value={document} key={index}>
+              {parseDocumentName(document)}
+            </option>
           ))}
         </select>
 

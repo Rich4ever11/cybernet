@@ -30,7 +30,7 @@ interface FileMetaData {
 async function stream2buffer(stream: any) {
   try {
     const chunks = [];
-    for await (let chunk of stream) {
+    for await (const chunk of stream) {
       chunks.push(chunk);
     }
     return Buffer.concat(chunks);

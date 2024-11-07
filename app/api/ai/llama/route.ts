@@ -1,15 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
-import { headers } from "next/headers";
 import { HfInference } from "@huggingface/inference";
-
-interface Request {
-  inputs: string;
-}
 
 const inference = new HfInference(process.env.HUGGING_FACE_API_KEY);
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextApiRequest, _: NextApiResponse) {
   const { question } = await new Response(req.body).json();
 
   const result = await inference.chatCompletion({

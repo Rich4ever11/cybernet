@@ -1,9 +1,9 @@
 import React from "react";
 import SignInCard from "@/components/Authentication/SignInCard";
 
-type Props = {};
+// type Props = {};
 
-export default function SignInPage({}: Props) {
+export default function SignInPage({}: object) {
   return (
     <div className="bg-gray-950 min-h-screen h-full content-center border-8 border-black">
       <div className="grid justify-items-stretch">

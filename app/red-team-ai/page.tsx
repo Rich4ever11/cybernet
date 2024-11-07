@@ -5,9 +5,9 @@ import Conversation from "@/components/RedTeam/AI/Conversation";
 import NavBarAuth from "@/components/Navbar/NavBarAuth";
 import { getUserCookieSession } from "@/util/middleware/cookies";
 
-type Props = {};
+// type Props = {};
 
-export default function page({}: Props) {
+export default function AI() {
   const [userDocuments, setUserDocuments] = useState([]);
 
   const handleUserDocuments = async () => {

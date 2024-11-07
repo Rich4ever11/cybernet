@@ -2,11 +2,10 @@
 
 import React, { useState } from "react";
 import LinkedinCard from "./Card/LinkedinCard";
-import { GiCyberEye } from "react-icons/gi";
 
-type Props = {};
+// type Props = {};
 
-export default function LinkedinSearchModule({}: Props) {
+export default function LinkedinSearchModule() {
   const [searchByValue, setSearchByValue] = useState("keywords");
   const [searchQuery, setSearchQuery] = useState("");
   const [linkedinData, setLinkedinData] = useState([]);

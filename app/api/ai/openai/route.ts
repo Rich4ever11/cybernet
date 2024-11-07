@@ -1,8 +1,7 @@
 import { NextApiResponse } from "next";
+import OpenAI from "openai";
 
-const { OpenAI } = require("openai");
-
-export async function POST(req: any, res: NextApiResponse) {
+export async function POST(_: any, res: NextApiResponse) {
   const openai = new OpenAI({
     apiKey: process.env.OPEN_AI_API_KEY,
   });

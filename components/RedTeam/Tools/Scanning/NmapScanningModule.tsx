@@ -4,9 +4,9 @@ import React, { useState } from "react";
 import NmapCard from "./NmapCard/NmapCard";
 import OSCard from "./NmapCard/OSCard";
 
-type Props = {};
+// type Props = {};
 
-export default function NmapScanningModule({}: Props) {
+export default function NmapScanningModule() {
   const [ipAddress, setIpAddress] = useState("");
   const [portSpan, setPortSpan] = useState(1);
   const [scanResults, setScanResults] = useState();

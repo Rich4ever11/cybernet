@@ -27,8 +27,8 @@ export default function OSCard({ name, accuracy, osInfo }: Props) {
         </div>
 
         {osInfo.map((os: any) =>
-          os.cpe.map((cpe: string) => (
-            <div className="stat place-items-center">
+          os.cpe.map((cpe: string, index: number) => (
+            <div className="stat place-items-center" key={index}>
               <div className="stat-title">CPE</div>
               <div className="stat-value text-error">{cpe}</div>
               <div className="stat-desc text-error">

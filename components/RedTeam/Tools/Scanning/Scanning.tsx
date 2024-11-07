@@ -2,9 +2,9 @@ import React from "react";
 import { GiCyberEye } from "react-icons/gi";
 import NmapScanningModule from "./NmapScanningModule";
 
-type Props = {};
+// type Props = {};
 
-export default function Scanning({}: Props) {
+export default function Scanning() {
   return (
     <div className="m-4">
       <div className="flex justify-items-center align-middle p-8">

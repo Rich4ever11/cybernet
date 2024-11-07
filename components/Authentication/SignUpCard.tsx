@@ -7,9 +7,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-type Props = {};
+// type Props = {};
 
-export default function SignUpCard({}: Props) {
+export default function SignUpCard() {
   const router = useRouter();
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -19,14 +19,13 @@ export default function SignUpCard({}: Props) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handleUserCookie = async () => {
-    const result = await getUserCookieSession();
-    if (result) {
-      router.push("/");
-    }
-  };
-
   useEffect(() => {
+    const handleUserCookie = async () => {
+      const result = await getUserCookieSession();
+      if (result) {
+        router.push("/");
+      }
+    };
     handleUserCookie();
     const interval = setInterval(() => handleUserCookie(), 5000);
     return () => {

@@ -32,14 +32,6 @@ export default function NotesTable({ user_id }: Props) {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-              <td>Blue</td>
-              <td>Blue</td>
-            </tr>
             {userNotes.map(
               (
                 note: {
@@ -55,11 +47,11 @@ export default function NotesTable({ user_id }: Props) {
                   <td>{note.id}</td>
                   <td>{note.document_key}</td>
                   <td>{note.timestamp}</td>
-                  <td>{"NEEDS TO BE ADDED"}</td>
+                  <td>{"None"}</td>
                   <td>
                     <label
                       htmlFor={`my_modal_${note.id}`}
-                      className="btn bg-cyan-100 text-black"
+                      className="btn bg-cyan-100/5 text-white border-2 border-cyan-50"
                     >
                       Display Note Content
                     </label>

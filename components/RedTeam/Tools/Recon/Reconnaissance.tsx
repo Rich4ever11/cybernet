@@ -3,9 +3,9 @@ import LinkedinSearchModule from "./LinkedinSearchModule";
 import BreachSearch from "./BreachSearchModule";
 import { GiCyberEye } from "react-icons/gi";
 
-type Props = {};
+// type Props = {};
 
-export default function Reconnaissance({}: Props) {
+export default function Reconnaissance() {
   return (
     <div className="m-4">
       <div className="flex justify-items-center align-middle p-8">

@@ -21,7 +21,7 @@ export async function POST(
   const { req_email, req_password, req_username, req_firstName, req_lastName } =
     await new Response(req.body).json();
 
-  var userCreationParams = {
+  const userCreationParams = {
     RequestItems: {
       users: [
         {

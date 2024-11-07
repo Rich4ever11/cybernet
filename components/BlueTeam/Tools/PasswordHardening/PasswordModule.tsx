@@ -2,9 +2,9 @@ import React from "react";
 import PasswordGenerator from "./PasswordGenerator";
 import { GiCyberEye } from "react-icons/gi";
 
-type Props = {};
+// type Props = {};
 
-export default function PasswordModule({}: Props) {
+export default function PasswordModule() {
   return (
     <div>
       <div className="m-4">

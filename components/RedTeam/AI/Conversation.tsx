@@ -20,7 +20,7 @@ type Props = {
   userDocuments: DocumentMetaData[];
 };
 
-export default function ({ userDocuments }: Props) {
+export default function Conversation({ userDocuments }: Props) {
   const [dynamicDocs, setDynamicDocs] = useState<any>([]);
   const [fileContents, setFileContents] = useState<string>("");
 

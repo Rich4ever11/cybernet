@@ -2,9 +2,9 @@ import React from "react";
 import VulnerabilityLookup from "./VulnerabilityLookup";
 import { GiCyberEye } from "react-icons/gi";
 
-type Props = {};
+// type Props = {};
 
-export default function PatchAndUpdateModule({}: Props) {
+export default function PatchAndUpdateModule() {
   return (
     <div>
       <div className="flex justify-items-center align-middle p-8">

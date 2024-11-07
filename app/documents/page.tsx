@@ -1,15 +1,14 @@
 "use client";
 
 import UserDocumentsTable from "@/components/Documents/UserDocumentsTable";
-import UserDocuments from "@/components/Home/UserDashboard";
 import NavBarAuth from "@/components/Navbar/NavBarAuth";
 import { getUserCookieSession } from "@/util/middleware/cookies";
 import React, { useEffect, useState } from "react";
 import { IoDocumentLockSharp } from "react-icons/io5";
 
-type Props = {};
+// type Props = {};
 
-export default function route({}: Props) {
+export default function Documents() {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [userDocuments, setUserDocuments] = useState([]);

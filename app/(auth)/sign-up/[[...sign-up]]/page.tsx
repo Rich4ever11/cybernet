@@ -1,11 +1,10 @@
 import SignUpCard from "@/components/Authentication/SignUpCard";
 import React from "react";
 import Image from "next/image";
-import { GiCyberEye } from "react-icons/gi";
 
-type Props = {};
+// type Props = {};
 
-export default function SignUpPage({}: Props) {
+export default function SignUpPage({}: object) {
   return (
     <div>
       <div className="bg-gray-950 min-h-screen h-full content-center">

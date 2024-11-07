@@ -8,9 +8,9 @@ import { getUserCookieSession } from "@/util/middleware/cookies";
 import { IoDocumentLockSharp } from "react-icons/io5";
 import { FaStickyNote } from "react-icons/fa";
 
-type Props = {};
+// type Props = {};
 
-export default function Notes({}: Props) {
+export default function Notes() {
   const [userId, setUserId] = useState<string>("");
   const [userDocuments, setUserDocuments] = useState([]);
   const [showNotesForm, setShowNotesForm] = useState(false);
