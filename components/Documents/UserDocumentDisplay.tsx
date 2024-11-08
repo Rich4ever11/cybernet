@@ -19,7 +19,7 @@ export const UserDocumentDisplay = ({
     const uploadFile = event.target.files[0];
     const userDataResult = await getUserCookieSession();
     const { id } = userDataResult.userData;
-    var data = new FormData();
+    let data = new FormData();
     data.append("data", uploadFile);
     data.append("name", uploadFile.name);
     data.append("contentType", uploadFile.type);

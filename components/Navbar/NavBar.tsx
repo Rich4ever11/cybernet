@@ -10,7 +10,7 @@ type Props = {
   username: string;
 };
 
-export default function ({ username }: Props) {
+export default function NavBar({ username }: Props) {
   const router = useRouter();
   const [showUserMenu, setShowUserMenu] = useState(false);
 

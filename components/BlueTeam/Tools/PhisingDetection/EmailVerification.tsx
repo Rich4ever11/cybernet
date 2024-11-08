@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-type Props = {};
+// type Props = {};
 
-export default function EmailVerification({}: Props) {
+export default function EmailVerification() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState<string>();
   const [emailVerificationData, setEmailVerificationData] = useState<any>();

@@ -4,9 +4,9 @@ import React from "react";
 import EmailVerification from "./EmailVerification";
 import PhishingVerification from "./PhishingVerification";
 
-type Props = {};
+// type Props = {};
 
-export default function PhisingDetectionModule({}: Props) {
+export default function PhisingDetectionModule() {
   return (
     <div>
       <EmailVerification />

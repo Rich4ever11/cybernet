@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-type Props = {};
+// type Props = {};
 
-export default function PhishingVerification({}: Props) {
+export default function PhishingVerification() {
   const [loading, setLoading] = useState(false);
   const [phishingLink, setPhishingLink] = useState<string>();
   const [phishingLinkData, setPhishingLinkData] = useState();

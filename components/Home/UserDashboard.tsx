@@ -9,9 +9,9 @@ import { useState, useEffect } from "react";
 import UserNoteCard from "./Card/UserNoteCard";
 import Link from "next/link";
 
-type Props = {};
+// type Props = {};
 
-export default function UserDocuments({}: Props) {
+export default function UserDocuments() {
   const [dynamicDocs, setDynamicDocs] = useState<any>([]);
   const [userDocuments, setUserDocuments] = useState([]);
   const [firstName, setFirstName] = useState();
