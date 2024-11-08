@@ -12,12 +12,9 @@ export default function NavBarAuth() {
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState<any>({});
   const handleUserCookie = async () => {
-    console.log(userLoggedIn);
     const result = await getUserCookieSession();
-    console.log(result);
     if (result) {
       const userInfo = result.userData;
-      console.log(userInfo);
       setUserData(userInfo);
       return;
     }
