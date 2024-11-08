@@ -14,9 +14,7 @@ export default function NavBarAuth() {
   const handleUserCookie = async () => {
     const result = await getUserCookieSession();
     console.log(result);
-    console.log("OICJIUCNNCWIUSNIUCNSIUSNCIUNC");
     if (result) {
-      console.log("OICJIUCNNCWIUSNIUCNSIUSNCIUNC");
       const userInfo = result.userData;
       setUserData(userInfo);
       return;
