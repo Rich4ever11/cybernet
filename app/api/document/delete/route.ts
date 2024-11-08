@@ -3,7 +3,7 @@ import { DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
-export async function DELETE(req: NextApiRequest, res: NextApiResponse) {
+export async function DELETE(req: any, res: any) {
   try {
     const { documentKey } = await new Response(req.body).json();
     const command = new DeleteObjectCommand({

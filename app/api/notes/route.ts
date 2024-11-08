@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 import { pool } from "@/postgres/database";
 
-export async function POST(req: NextApiRequest, res: NextApiResponse<any>) {
+export async function POST(req: any, res: any) {
   const { documentKey, note_contents, timestamp, user_id } = await new Response(
     req.body
   ).json();

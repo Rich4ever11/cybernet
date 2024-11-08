@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
-export async function POST(req: NextApiRequest, res: NextApiResponse<any>) {
+export async function POST(req: any, res: any) {
   const { email } = await new Response(req.body).json();
 
   try {
