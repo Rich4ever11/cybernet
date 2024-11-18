@@ -186,13 +186,13 @@ export default function UserDocuments() {
         </div>
         <div className="flex justify-center ">
           <div className="flex overflow-x-scroll max-w-screen-2xl">
-            <UserNoteCard
+            {/* <UserNoteCard
               noteId={1}
               document="document.txt"
               userQuestion="How is the weather?"
               cybernetResponse="Looks Good in Maryland :D"
               username={firstName + " " + lastName}
-            />
+            /> */}
           </div>
         </div>
 
