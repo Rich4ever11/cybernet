@@ -33,6 +33,7 @@ export async function POST(
               first_name: req_firstName,
               last_name: req_lastName,
               username: req_username,
+              password: hash_password(req_password),
             },
           },
         },
