@@ -1,6 +1,7 @@
 "use client";
 
 import type { Metadata } from "next";
+import Head from "next/head";
 import localFont from "next/font/local";
 import { UserContextProvider } from "@/context/User/UserContext";
 
@@ -29,6 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <link rel="manifest" href="/manifest.json" />
+      </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
