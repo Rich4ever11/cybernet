@@ -14,6 +14,7 @@ export async function POST(req: any, _: any) {
       messages: [{ role: "user", content: question }],
       max_tokens: 500,
     });
+    console.log(result);
     return NextResponse.json(
       { body: result.choices[0].message },
       { status: 200 }

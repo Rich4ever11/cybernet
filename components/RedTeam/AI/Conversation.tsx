@@ -71,7 +71,7 @@ export default function Conversation({ userDocuments }: Props) {
   }
 
   return (
-    <div className="flex flex-row h-full">
+    <div className="flex md:flex-row flex-col h-full">
       <div className="max-w-auto border-red-50 px-1 justify-items-center basis-4/12 flex flex-col justify-end bg-neutral-900">
         <Chat fileContents={fileContents} key={fileContents} />
       </div>

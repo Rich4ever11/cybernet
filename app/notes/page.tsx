@@ -41,12 +41,12 @@ export default function Notes() {
   return (
     <div>
       <NavBarAuth />
-      <div className="py-6 px-2  bg-black overflow-scroll w-screen">
+      <div className="py-6 px-2 bg-black overflow-scroll w-screen">
         <h1 className="text-6xl font-thin flex divider divider-primary">
           Notes Center <FaStickyNote className="mx-2" size={175} />
         </h1>
       </div>
-      <div className="flex">
+      <div className="flex flex-col">
         {showNotesForm && (
           <div className="basis-1/3">
             {userDocuments && userId && (

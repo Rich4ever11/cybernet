@@ -100,7 +100,7 @@ export default function UserDocumentsTable({
 
   return (
     <div>
-      <div className="flex flex-row h-1/2">
+      <div className="flex md:flex-row flex-col h-1/2">
         <div className="basis-6/12 bg-black">
           <div className="overflow-x-auto bg-black max-w-full max-h-screen">
             <table className="table bg-black">

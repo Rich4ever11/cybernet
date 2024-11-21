@@ -58,16 +58,13 @@ export default function UserDocuments() {
     const byteArrayConverted = new Int8Array(
       Object.values(responseData["data"])
     );
-    const contentType =
-      responseData["contentType"] === "application/octet-stream"
-        ? "text/plain"
-        : responseData["contentType"];
+    const contentType = responseData.metadata.contentType;
     const documentBlob = new Blob([byteArrayConverted], {
       type: contentType,
     });
+
     const objectURL = URL.createObjectURL(documentBlob);
     setRenderedDocument(documentName);
-    console.log(contentType);
     setDynamicDocs([
       {
         uri: objectURL,

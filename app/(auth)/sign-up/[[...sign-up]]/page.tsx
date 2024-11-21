@@ -16,7 +16,7 @@ export default function SignUpPage({}: object) {
             Cybernet AI
           </h1>
         </div>
-        <div className="flex justify-center space-x-20">
+        <div className="md:flex justify-center md:space-x-16">
           <div className="flex items-center">
             <div className="flex justify-center">
               <Image

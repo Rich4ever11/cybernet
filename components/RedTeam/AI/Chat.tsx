@@ -40,10 +40,10 @@ export default function Chat({ fileContents }: Props) {
       body: JSON.stringify(data),
     });
     const responseData = await res.json();
+    console.log(responseData.body);
     const aiAnswer = responseData.body.content;
     const answerTimeInSeconds = new Date().getTime() / 1000;
 
-    console.log(responseData);
     const aiMessage = {
       time: answerTimeInSeconds,
       content: aiAnswer,

@@ -15,7 +15,7 @@ export default function SignInPage({}: object) {
         </h1>
       </div>
 
-      <div className="flex justify-center space-x-16">
+      <div className="md:flex justify-center md:space-x-16">
         <div className="">
           <div className="flex justify-center py-8">
             <img
