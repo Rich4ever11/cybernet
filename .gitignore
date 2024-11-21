@@ -36,6 +36,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-/public
-/app/public
 /scripts/__pycache__
