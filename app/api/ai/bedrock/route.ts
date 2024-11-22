@@ -19,9 +19,8 @@ export async function POST(
       retrieveAndGenerateConfiguration: {
         type: "KNOWLEDGE_BASE",
         knowledgeBaseConfiguration: {
-          knowledgeBaseId: "P7WKAZSZRX",
-          modelArn:
-            "arn:aws:bedrock:us-east-1:219023173602:inference-profile/us.meta.llama3-1-70b-instruct-v1:0",
+          knowledgeBaseId: process.env.BEDROCK_KNOWLEDGE_BASE_ID,
+          modelArn: process.env.BEDROCK_MODEL,
 
           retrievalConfiguration: {
             // KnowledgeBaseRetrievalConfiguration
