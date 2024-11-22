@@ -35,5 +35,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/public/sw.js
+/public/sw.js.map
+/public/workbox-631a4576.js
+/public/workbox-631a4576.js.map
 
 /scripts/__pycache__

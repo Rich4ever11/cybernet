@@ -22,7 +22,7 @@ type Props = {
 
 export default function Conversation({ userDocuments }: Props) {
   const [dynamicDocs, setDynamicDocs] = useState<any>([]);
-  const [fileContents, setFileContents] = useState<string>("");
+  const [documentKey, setDocumentKey] = useState<string>("");
 
   const parseDocument = (fullDocumentPath: string) => {
     const pathSplit = fullDocumentPath.split("/");
@@ -51,18 +51,8 @@ export default function Conversation({ userDocuments }: Props) {
     const documentBlob = new Blob([byteArrayConverted], {
       type: contentType,
     });
-    let result = "";
-    switch (contentType) {
-      case "text/plain":
-        result = await documentBlob.text();
-        break;
-      case "application/pdf":
-        result = await pdfToText(documentBlob);
-        break;
-    }
     const objectURL = URL.createObjectURL(documentBlob);
-    console.log(result, contentType);
-    setFileContents(result);
+    setDocumentKey(documentKey);
     setDynamicDocs([
       {
         uri: objectURL,
@@ -73,7 +63,7 @@ export default function Conversation({ userDocuments }: Props) {
   return (
     <div className="flex md:flex-row flex-col h-full">
       <div className="max-w-auto border-red-50 px-1 justify-items-center basis-4/12 flex flex-col justify-end bg-neutral-900">
-        <Chat fileContents={fileContents} key={fileContents} />
+        <Chat document_key={documentKey} key={documentKey} />
       </div>
       <div className="basis-8/12">
         <div className="drawer">
