@@ -10,7 +10,6 @@ type Props = {
 };
 
 export default function UserNoteCard({
-  noteId,
   document,
   userQuestion,
   cybernetResponse,
@@ -20,8 +19,7 @@ export default function UserNoteCard({
     <div>
       <div className="card bg-zinc-950 w-96 shadow-xl m-8">
         <div className="card-body">
-          <h2 className="card-title font-thin text-4xl">Note Card {noteId}</h2>
-          <div className="divider">{document}</div>
+          <div className="divider text-2xl">{document}</div>
           <div className="overflow-y-scroll max-h-72">
             <div className="chat chat-end">
               <div className="chat-image avatar">

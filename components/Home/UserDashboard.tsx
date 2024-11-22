@@ -14,34 +14,69 @@ import Link from "next/link";
 export default function UserDocuments() {
   const [dynamicDocs, setDynamicDocs] = useState<any>([]);
   const [userDocuments, setUserDocuments] = useState([]);
+  const [userNotes, setUserNotes] = useState([]);
+  const [userChats, setUserChats] = useState([]);
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [renderedDocument, setRenderedDocument] = useState<string>("");
 
   const handleUserDocuments = async () => {
-    const result = await getUserCookieSession();
-    if (result) {
-      const userInfo = result.userData;
-      const id = userInfo.id;
-      setFirstName(userInfo.first_name);
-      setLastName(userInfo.last_name);
-      const response = await fetch(`/api/document/render?id=${id}`);
-      if (response.ok) {
-        const documents = await response.json();
-        console.log(documents);
-        setUserDocuments(documents.data);
+    try {
+      const result = await getUserCookieSession();
+      if (result) {
+        const userInfo = result.userData;
+        const id = userInfo.id;
+        setFirstName(userInfo.first_name);
+        setLastName(userInfo.last_name);
+        const response = await fetch(`/api/document/render?id=${id}`);
+        if (response.ok) {
+          const documents = await response.json();
+          console.log(documents);
+          setUserDocuments(documents.data);
+        }
+        console.log(id);
       }
-      console.log(id);
+    } catch {
+      console.log("Failed to get documents");
     }
   };
 
-  const parseDocument = (fullDocumentPath: string) => {
+  const handleUserNotes = async () => {
+    try {
+      const result = await getUserCookieSession();
+      const userInfo = result.userData;
+      const user_id = userInfo.id;
+
+      const response = await fetch(`/api/notes?id=${user_id}`);
+      const notes_result = await response.json();
+      setUserNotes(notes_result.body);
+    } catch {
+      console.log("Failed to get notes");
+    }
+  };
+
+  const handleUserChat = async () => {
+    try {
+      const result = await getUserCookieSession();
+      const userInfo = result.userData;
+      const user_id = userInfo.id;
+
+      const response = await fetch(`/api/notes/ai?id=${user_id}`);
+      const chat_results = await response.json();
+      console.log(chat_results);
+      setUserChats(chat_results.body);
+    } catch {
+      console.log("Failed to get notes");
+    }
+  };
+
+  const parseDocumentKey = (fullDocumentPath: string) => {
     const pathSplit = fullDocumentPath.split("/");
     return pathSplit[pathSplit.length - 1];
   };
 
   const handleDocumentRender = async (documentKey: string) => {
-    const documentName = parseDocument(documentKey);
+    const documentName = parseDocumentKey(documentKey);
     const data = {
       documentKey: documentKey,
     };
@@ -74,10 +109,12 @@ export default function UserDocuments() {
 
   useEffect(() => {
     handleUserDocuments();
+    handleUserNotes();
+    handleUserChat();
   }, []);
 
   return (
-    <div className="h-screen">
+    <div className="h-full">
       <div className="flex justify-center divider divider-primary p-10">
         <h1 className="md:text-6xl text-3xl py-8 text-slate-400 font-thin">
           {" "}
@@ -130,7 +167,7 @@ export default function UserDocuments() {
                       </div>
                     </td>
                     <td>
-                      {parseDocument(document.Key)}
+                      {parseDocumentKey(document.Key)}
                       <br />
                       <span className="badge badge-ghost badge-sm">
                         {document.LastModified}
@@ -180,21 +217,90 @@ export default function UserDocuments() {
             Notes
           </h1>
         </div>
-        <div className="flex justify-center ">
-          <div className="flex overflow-x-scroll max-w-screen-2xl">
-            {/* <UserNoteCard
-              noteId={1}
-              document="document.txt"
-              userQuestion="How is the weather?"
-              cybernetResponse="Looks Good in Maryland :D"
-              username={firstName + " " + lastName}
-            /> */}
+        <div className="flex justify-center w-screen">
+          <div className="flex overflow-x-scroll space-x-4">
+            {userNotes.map(
+              (
+                userNote: {
+                  id: string;
+                  timestamp: string;
+                  content: string;
+                  document_key: string;
+                },
+                index
+              ) => (
+                <div
+                  className="card bg-base-100 w-96 shadow-xl border-2 border-white/50"
+                  key={index}
+                >
+                  <div className="card-body">
+                    <h2 className="card-title w-fit overflow-x-scroll text-white text-2xl font-thin">
+                      {parseDocumentKey(userNote.document_key)}
+                    </h2>
+                    <p>{userNote.content}</p>
+                  </div>
+                </div>
+              )
+            )}
           </div>
         </div>
 
         <div className="p-2 flex flex-row-reverse">
           <button className="btn btn-outline btn-primary pl-4">
-            View Notes Dashboard
+            <Link
+              href="/notes"
+              className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            >
+              View Notes Dashboard
+            </Link>
+          </button>
+        </div>
+
+        <div>
+          <div className="flex justify-center divider divider-primary p-10">
+            <h1 className="md:text-6xl text-3xl py-8 text-slate-400 font-thin">
+              {" "}
+              Chat
+            </h1>
+          </div>
+          <div className="flex justify-center w-screen">
+            <div className="flex overflow-x-scroll space-x-4">
+              {userChats.map(
+                (
+                  chat: {
+                    id: number;
+                    user_id: string;
+                    document_id: string;
+                    user_question: string;
+                    model_response: string;
+                    model_version: string;
+                    created_at: string;
+                  },
+                  index
+                ) => (
+                  <div key={index}>
+                    <UserNoteCard
+                      noteId={chat.id}
+                      document={parseDocumentKey(chat.document_id)}
+                      userQuestion={chat.user_question}
+                      cybernetResponse={chat.model_response}
+                      username={firstName + " " + lastName}
+                    />
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="p-2 flex flex-row-reverse">
+          <button className="btn btn-outline btn-primary pl-4">
+            <Link
+              href="/red-team-ai"
+              className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            >
+              Chat With Cybernet AI
+            </Link>
           </button>
         </div>
       </div>

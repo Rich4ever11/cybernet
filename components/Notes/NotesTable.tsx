@@ -26,6 +26,11 @@ export default function NotesTable({
     handleNotesGetter();
   }, []);
 
+  const parseDocumentKey = (fullDocumentPath: string) => {
+    const pathSplit = fullDocumentPath.split("/");
+    return pathSplit[pathSplit.length - 1];
+  };
+
   const handleNoteEdit = (
     note_content: string,
     document_key: string,
@@ -70,7 +75,7 @@ export default function NotesTable({
                 <tr key={index}>
                   <th>{index}</th>
                   <td>{note.id}</td>
-                  <td>{note.document_key}</td>
+                  <td>{parseDocumentKey(note.document_key)}</td>
                   <td>{note.timestamp}</td>
                   <td>
                     <div className="px-2"></div>

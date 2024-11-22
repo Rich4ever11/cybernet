@@ -5,7 +5,7 @@ import UserDashboard from "@/components/Home/UserDashboard";
 
 export default function Home() {
   return (
-    <div className="bg-black grid font-[family-name:var(--font-geist-sans)]">
+    <div className="bg-black h-full grid font-[family-name:var(--font-geist-sans)]">
       <NavBarAuth />
       <UserDashboard />
     </div>

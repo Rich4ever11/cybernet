@@ -27,7 +27,7 @@ export async function GET(req: any, res: NextApiResponse<any>) {
   try {
     const getQuery = `
           SELECT *
-          FROM notes_ai
+          FROM chat
           WHERE user_id = $1
       `;
 
