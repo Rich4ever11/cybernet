@@ -1,11 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 type Props = {
   user_id: string;
+  setNoteEdit: Dispatch<SetStateAction<{}>>;
+  showForm: Dispatch<SetStateAction<boolean>>;
+  isFormOpen: boolean;
 };
 
-export default function NotesTable({ user_id }: Props) {
+export default function NotesTable({
+  user_id,
+  setNoteEdit,
+  showForm,
+  isFormOpen,
+}: Props) {
   const [userNotes, setUserNotes] = useState([]);
+  const [formOpen, setFormOpen] = useState("");
 
   useEffect(() => {
     const handleNotesGetter = async () => {
@@ -16,6 +25,19 @@ export default function NotesTable({ user_id }: Props) {
 
     handleNotesGetter();
   }, []);
+
+  const handleNoteEdit = (
+    note_content: string,
+    document_key: string,
+    note_id: string
+  ) => {
+    setNoteEdit({
+      note_content,
+      document_key,
+      note_id,
+    });
+    showForm(true);
+  };
 
   return (
     <div>
@@ -50,7 +72,19 @@ export default function NotesTable({ user_id }: Props) {
                   <td>{note.id}</td>
                   <td>{note.document_key}</td>
                   <td>{note.timestamp}</td>
-                  <td>{"None"}</td>
+                  <td>
+                    <div className="px-2"></div>
+
+                    <button
+                      className="btn btn-outline btn-primary"
+                      disabled={isFormOpen}
+                      onClick={() =>
+                        handleNoteEdit(note.content, note.document_key, note.id)
+                      }
+                    >
+                      Edit Note
+                    </button>
+                  </td>
                   <td>
                     <label
                       htmlFor={`my_modal_${note.id}`}

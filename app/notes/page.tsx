@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useEffect, useState } from "react";
+import React, { Key, use, useEffect, useState } from "react";
 import NavBarAuth from "@/components/Navbar/NavBarAuth";
 import NoteForm from "@/components/Notes/NoteForm";
 import NotesTable from "@/components/Notes/NotesTable";
@@ -14,6 +14,7 @@ export default function Notes() {
   const [userId, setUserId] = useState<string>("");
   const [userDocuments, setUserDocuments] = useState([]);
   const [showNotesForm, setShowNotesForm] = useState(false);
+  const [editNote, setEditNote] = useState({});
 
   const handleUserDocuments = async () => {
     const result = await getUserCookieSession();
@@ -34,6 +35,11 @@ export default function Notes() {
     }
   };
 
+  const handleCreateNoteForm = () => {
+    setEditNote({});
+    setShowNotesForm(true);
+  };
+
   useEffect(() => {
     handleUserDocuments();
   }, []);
@@ -50,7 +56,19 @@ export default function Notes() {
         {showNotesForm && (
           <div className="basis-1/3">
             {userDocuments && userId && (
-              <NoteForm userDocuments={userDocuments} userId={userId} />
+              <NoteForm
+                key={editNote as Key}
+                userDocuments={userDocuments}
+                userId={userId}
+                editNote={
+                  editNote as {
+                    note_content: string;
+                    document_key: string;
+                    note_id: string;
+                  }
+                }
+                showForm={setShowNotesForm}
+              />
             )}
           </div>
         )}
@@ -58,12 +76,20 @@ export default function Notes() {
           <div className="flex bg-black p-2">
             <button
               className="btn btn-outline btn-primary"
-              onClick={() => setShowNotesForm(!showNotesForm)}
+              disabled={showNotesForm}
+              onClick={handleCreateNoteForm}
             >
               Create Note
             </button>
           </div>
-          {userId && <NotesTable user_id={userId} />}
+          {userId && (
+            <NotesTable
+              user_id={userId}
+              setNoteEdit={setEditNote}
+              showForm={setShowNotesForm}
+              isFormOpen={showNotesForm}
+            />
+          )}
         </div>
       </div>
     </div>

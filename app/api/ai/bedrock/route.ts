@@ -2,6 +2,7 @@ import { RetrieveAndGenerateCommand } from "@aws-sdk/client-bedrock-agent-runtim
 import type { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 import { bedrockClient } from "@/aws/bedrock-config";
+import { handleChatCreation } from "@/app/api/chat/route";
 
 type ResponseData = {
   message: string;
@@ -42,6 +43,16 @@ export async function POST(
 
     const { citations, output } = await bedrockClient.send(retrieveAndGen);
     if (output) {
+      const user_id = document_key.split("/")[0];
+      const created_at = new Date().getTime() / 1000;
+      const result = await handleChatCreation(
+        user_id,
+        document_key,
+        question,
+        output.text || "RESPONSE NOT FOUND",
+        process.env.BEDROCK_MODEL || "",
+        created_at
+      );
       return NextResponse.json({ message: output }, { status: 200 });
     } else {
       return NextResponse.json({ message: "Invalid Output" }, { status: 404 });

@@ -61,6 +61,7 @@ export const UserDocumentDisplay = ({
             <input
               type="file"
               className="file-input file-input-ghost w-full max-w-xs"
+              accept=".txt,.pdf"
               onChange={handleFileUpload}
             />
           </div>
