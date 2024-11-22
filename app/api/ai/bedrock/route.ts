@@ -19,8 +19,9 @@ export async function POST(
       retrieveAndGenerateConfiguration: {
         type: "KNOWLEDGE_BASE",
         knowledgeBaseConfiguration: {
-          knowledgeBaseId: process.env.BEDROCK_KNOWLEDGE_BASE_ID,
-          modelArn: process.env.BEDROCK_MODEL,
+          knowledgeBaseId: "P7WKAZSZRX",
+          modelArn:
+            "arn:aws:bedrock:us-east-1:219023173602:inference-profile/us.meta.llama3-1-70b-instruct-v1:0",
 
           retrievalConfiguration: {
             // KnowledgeBaseRetrievalConfiguration
@@ -44,7 +45,7 @@ export async function POST(
     if (output) {
       return NextResponse.json({ message: output }, { status: 200 });
     } else {
-      return NextResponse.json({ message: "No Users Found" }, { status: 404 });
+      return NextResponse.json({ message: "Invalid Output" }, { status: 404 });
     }
   } catch (error) {
     console.log(error);
