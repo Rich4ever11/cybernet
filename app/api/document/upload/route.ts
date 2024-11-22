@@ -1,10 +1,8 @@
 import { s3Config } from "@/aws/s3config";
 import { createHash } from "crypto";
-import {
-  GetObjectCommand,
-  ListObjectsCommand,
-  PutObjectCommand,
-} from "@aws-sdk/client-s3";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { StartIngestionJobCommand } from "@aws-sdk/client-bedrock-agent"; // ES Modules import
+import { bedrockAgentClient } from "@/aws/bedrock-config-agent";
 import { verifyActiveUser } from "@/util/authenticateRequest";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
@@ -58,7 +56,18 @@ export async function POST(req: any, res: NextApiResponse<ResponseData>) {
         ContentEncoding: "base64", // required
         ContentType: contentType,
       });
-      const response = await s3Config.send(command);
+      const s3_response = await s3Config.send(command);
+
+      // updates the knowledge base for the user
+      const input = {
+        // StartIngestionJobRequest
+        knowledgeBaseId: process.env.BEDROCK_KNOWLEDGE_BASE_ID, // required
+        dataSourceId: process.env.BEDROCK_KNOWLEDGE_BASE_DATA_SOURCE_ID, // required
+      };
+      const syncKnowledgeBaseCommand = new StartIngestionJobCommand(input);
+      const bedrock_response = await bedrockAgentClient.send(
+        syncKnowledgeBaseCommand as any
+      );
 
       return NextResponse.json(
         { message: "[+} File Successfully Added" },

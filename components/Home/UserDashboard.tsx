@@ -114,7 +114,7 @@ export default function UserDocuments() {
   }, []);
 
   return (
-    <div className="h-full">
+    <div className="min-h-screen h-full">
       <div className="flex justify-center divider divider-primary p-10">
         <h1 className="md:text-6xl text-3xl py-8 text-slate-400 font-thin">
           {" "}
@@ -122,7 +122,7 @@ export default function UserDocuments() {
         </h1>
       </div>
 
-      <div>
+      <div className="w-screen">
         <div className="overflow-x-auto overflow-y-scroll max-w-full max-h-screen">
           <table className="table">
             <thead>
@@ -146,8 +146,8 @@ export default function UserDocuments() {
                   index
                 ) => (
                   <tr key={index}>
-                    <td className="hidden md:block">
-                      <div className="hidden visible md:flex items-center gap-3">
+                    <td className="">
+                      <div className="flex items-center gap-3">
                         <div className="avatar">
                           <div className="mask mask-squircle h-12 w-12">
                             <img
