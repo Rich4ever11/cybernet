@@ -77,7 +77,7 @@ export default function UserDocuments() {
   }, []);
 
   return (
-    <div>
+    <div className="h-screen">
       <div className="flex justify-center divider divider-primary p-10">
         <h1 className="md:text-6xl text-3xl py-8 text-slate-400 font-thin">
           {" "}
