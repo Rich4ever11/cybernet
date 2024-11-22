@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 type Props = {
   user_id: string;
-  setNoteEdit: Dispatch<SetStateAction<{}>>;
+  setNoteEdit: Dispatch<SetStateAction<any>>; //empty object
   showForm: Dispatch<SetStateAction<boolean>>;
   isFormOpen: boolean;
 };
