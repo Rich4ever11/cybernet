@@ -27,7 +27,7 @@ export const createAINotesTable = async () => {
 
     CREATE TABLE IF NOT EXISTS notes_ai (
         id SERIAL PRIMARY KEY,
-        chat_id TEXT NOT NULL,
+        chat_id INTEGER REFERENCES chat (id) NOT NULL,
         note_content TEXT NOT NULL,
         created_at NUMERIC(100, 2) NOT NULL
     )
@@ -35,7 +35,7 @@ export const createAINotesTable = async () => {
 
   try {
     const res = await pool.query(createTableQuery);
-    console.log("🎉 notes table created successfully");
+    console.log("🎉 notes ai table created successfully");
   } catch (err) {
     console.error("⚠️ error creating notes table", err);
   }
@@ -43,9 +43,9 @@ export const createAINotesTable = async () => {
 
 export const createChatTable = async () => {
   const createTableQuery = `
-    DROP TABLE IF EXISTS notes_ai CASCADE;
+    DROP TABLE IF EXISTS chat CASCADE;
 
-    CREATE TABLE IF NOT EXISTS notes_ai (
+    CREATE TABLE IF NOT EXISTS chat (
         id SERIAL PRIMARY KEY,
         user_id VARCHAR(255) NOT NULL,
         document_id VARCHAR(255) NOT NULL,
@@ -58,11 +58,12 @@ export const createChatTable = async () => {
 
   try {
     const res = await pool.query(createTableQuery);
-    console.log("🎉 notes table created successfully");
+    console.log("🎉 chat table created successfully");
   } catch (err) {
     console.error("⚠️ error creating notes table", err);
   }
 };
 
-createNotesTable();
+// createNotesTable();
 createAINotesTable();
+createChatTable();
