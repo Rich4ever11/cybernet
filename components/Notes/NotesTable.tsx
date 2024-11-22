@@ -19,7 +19,10 @@ export default function NotesTable({ user_id }: Props) {
 
   return (
     <div>
-      <div className="bg-black w-auto" style={{ height: "93vh" }}>
+      <div
+        className="bg-black w-screen overflow-scroll"
+        style={{ height: "93vh" }}
+      >
         <table className="table table-zebra">
           <thead>
             <tr>

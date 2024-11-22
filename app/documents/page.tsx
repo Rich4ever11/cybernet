@@ -39,7 +39,7 @@ export default function Documents() {
       <NavBarAuth />
       <div className="">
         <div className="py-6 px-2  bg-black">
-          <h1 className="text-6xl font-thin flex divider divider-primary">
+          <h1 className="md:text-6xl text-3xl font-thin flex divider divider-primary">
             Document Center <IoDocumentLockSharp className="mx-2" size={200} />
           </h1>
         </div>

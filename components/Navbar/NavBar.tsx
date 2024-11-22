@@ -13,19 +13,28 @@ type Props = {
 export default function NavBar({ username }: Props) {
   const router = useRouter();
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showPagesMenu, setShowPagesMenu] = useState(false);
 
   function handleProfileMenu(event: any): void {
     setShowUserMenu(!showUserMenu);
+  }
+
+  function showPathsMenu(event: any): void {
+    console.log("Hello World!");
+    setShowPagesMenu(!showPagesMenu);
   }
 
   return (
     <div>
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a className="flex items-center space-x-3 rtl:space-x-reverse">
+          <button
+            className="flex items-center space-x-3 rtl:space-x-reverse"
+            onClick={(event) => showPathsMenu(event)}
+          >
             <GiCyberEye color={"white"} size={42} />{" "}
             <p className="pl-2 text-white">CYBERNET AI</p>
-          </a>
+          </button>
 
           {username !== "Loading..." ? (
             <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -123,13 +132,6 @@ export default function NavBar({ username }: Props) {
           aria-orientation="vertical"
           aria-labelledby="user-menu-button"
         >
-          {/* <a
-            className="block px-4 py-2 text-sm text-white"
-            role="menuitem"
-            id="user-menu-item-0"
-          >
-            Your Profile
-          </a> */}
           <a
             className="block px-4 py-2 text-sm text-white"
             role="menuitem"
@@ -151,6 +153,43 @@ export default function NavBar({ username }: Props) {
             >
               Sign out
             </button>
+          </a>
+        </div>
+      ) : (
+        <></>
+      )}
+
+      {showPagesMenu && username !== "Loading..." ? (
+        <div
+          className="absolute left-2 z-10 mt-2 w-48 mr-44 origin-top-left rounded-md bg-black py-1 shadow-lg ring-1 ring-white ring-opacity-5 focus:outline-none"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="user-menu-button"
+        >
+          <a className="block px-4 py-2 text-sm text-white" href="/documents">
+            Documents
+          </a>
+
+          <a className="block px-4 py-2 text-sm text-white" href="/red-team-ai">
+            Cybernet AI
+          </a>
+
+          <a className="block px-4 py-2 text-sm text-white" href="/notes">
+            Notes
+          </a>
+
+          <a
+            className="block px-4 py-2 text-sm text-white"
+            href="/blue-team-tools"
+          >
+            Blue Team Tools
+          </a>
+
+          <a
+            className="block px-4 py-2 text-sm text-white"
+            href="/red-team-tools"
+          >
+            Red Team Tools
           </a>
         </div>
       ) : (

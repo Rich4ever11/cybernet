@@ -79,7 +79,10 @@ export default function UserDocuments() {
   return (
     <div>
       <div className="flex justify-center divider divider-primary p-10">
-        <h1 className="text-6xl py-8 text-slate-400 font-thin"> Documents</h1>
+        <h1 className="md:text-6xl text-3xl py-8 text-slate-400 font-thin">
+          {" "}
+          Documents
+        </h1>
       </div>
 
       <div>
@@ -87,8 +90,7 @@ export default function UserDocuments() {
           <table className="table">
             <thead>
               <tr>
-                <th></th>
-                <th>Name</th>
+                <th className="hidden md:block">Name</th>
                 <th>Document Name</th>
                 <th>Size</th>
                 <th></th>
@@ -107,13 +109,8 @@ export default function UserDocuments() {
                   index
                 ) => (
                   <tr key={index}>
-                    <th>
-                      <label>
-                        {/* <input type="checkbox" className="checkbox" /> */}
-                      </label>
-                    </th>
-                    <td>
-                      <div className="flex items-center gap-3">
+                    <td className="hidden md:block">
+                      <div className="hidden visible md:flex items-center gap-3">
                         <div className="avatar">
                           <div className="mask mask-squircle h-12 w-12">
                             <img
@@ -155,8 +152,7 @@ export default function UserDocuments() {
 
             <tfoot>
               <tr>
-                <th></th>
-                <th>Name</th>
+                <th className="hidden md:block">Name</th>
                 <th>Document Name</th>
                 <th>Size</th>
                 <th></th>
@@ -179,7 +175,10 @@ export default function UserDocuments() {
 
       <div>
         <div className="flex justify-center divider divider-primary p-10">
-          <h1 className="text-6xl py-8 text-slate-400 font-thin"> Notes</h1>
+          <h1 className="md:text-6xl text-3xl py-8 text-slate-400 font-thin">
+            {" "}
+            Notes
+          </h1>
         </div>
         <div className="flex justify-center ">
           <div className="flex overflow-x-scroll max-w-screen-2xl">
@@ -201,9 +200,9 @@ export default function UserDocuments() {
       </div>
 
       <div>
-        <div className="m-8">
+        <div className="">
           {dynamicDocs.length ? (
-            <>
+            <div className="overflow-x-scroll w-auto">
               <div className="flex justify-center divider divider-primary">
                 <h1 className="text-white font-thin text-4xl py-2">
                   {renderedDocument}
@@ -211,9 +210,10 @@ export default function UserDocuments() {
               </div>
               <div
                 style={{ height: "100vh", overflow: "hidden" }}
-                className="px-4 bg-black"
+                className="bg-black w-screen overflow-scroll"
               >
                 <DocViewer
+                  className="w-fit"
                   pluginRenderers={DocViewerRenderers}
                   documents={dynamicDocs}
                   style={{
@@ -223,7 +223,7 @@ export default function UserDocuments() {
                   }}
                 />
               </div>
-            </>
+            </div>
           ) : (
             <></>
           )}
