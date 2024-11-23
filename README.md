@@ -6,9 +6,7 @@ Cybernet AI is a new age AI driven cybersecurity software. Cybernet AI's main fo
 
 Feel free to request access to this document through google docs or github messaging.
 
-## [Beta Video Demo](https://drive.google.com/file/d/1KZvLc0lMA6ZhtKdNCVHF4Im2sika2OhX/view?usp=sharing)
-
-  Note - Current video demo is outdated, new version coming soon
+## [Beta Video Demo](https://drive.google.com/file/d/1nXCXwG-kxC_-TkS0Wn6145b1AL16vykz/view?usp=sharing)
 
 # Software Beta Images
 
