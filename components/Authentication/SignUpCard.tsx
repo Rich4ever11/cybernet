@@ -96,6 +96,7 @@ export default function SignUpCard() {
                 id="firstName"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="John"
+                value={firstName}
                 onChange={(event) => setFirstName(event.target.value)}
                 required
               />
@@ -112,6 +113,7 @@ export default function SignUpCard() {
                 id="lastName"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Doe"
+                value={lastName}
                 onChange={(event) => setLastName(event.target.value)}
                 required
               />
@@ -130,6 +132,7 @@ export default function SignUpCard() {
               id="email"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="name@cybernet.com"
+              value={email}
               onChange={(event) => setEmail(event.target.value)}
               required
             />
@@ -147,6 +150,7 @@ export default function SignUpCard() {
               id="username"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="cybernet1"
+              value={username}
               onChange={(event) => setUsername(event.target.value)}
               required
             />
@@ -162,6 +166,7 @@ export default function SignUpCard() {
               type="password"
               id="password"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              value={password}
               onChange={(event) => setPassword(event.target.value)}
               required
             />

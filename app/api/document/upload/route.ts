@@ -58,9 +58,7 @@ export async function POST(req: any, res: NextApiResponse<ResponseData>) {
       });
       const s3_response = await s3Config.send(command);
 
-      // updates the knowledge base for the user
       const input = {
-        // StartIngestionJobRequest
         knowledgeBaseId: process.env.BEDROCK_KNOWLEDGE_BASE_ID, // required
         dataSourceId: process.env.BEDROCK_KNOWLEDGE_BASE_DATA_SOURCE_ID, // required
       };
