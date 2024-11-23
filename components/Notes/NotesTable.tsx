@@ -106,7 +106,9 @@ export default function NotesTable({
                       <div className="modal-box">
                         <h3 className="text-lg font-bold py-2">Note Content</h3>
 
-                        <h4 className="divider">{note.document_key}</h4>
+                        <h4 className="divider">
+                          {parseDocumentKey(note.document_key)}
+                        </h4>
 
                         <div className="mockup-code bg-black text-white px-4">
                           <pre>
