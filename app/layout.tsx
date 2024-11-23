@@ -16,8 +16,8 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-const APP_NAME = "Cybernet AI App";
-const APP_DEFAULT_TITLE = "Cybernet AI App";
+const APP_NAME = "CybernetAI";
+const APP_DEFAULT_TITLE = "CybernetAI";
 const APP_TITLE_TEMPLATE = "Cybernet AI - PWA App";
 const APP_DESCRIPTION = "Best Document AI app in the world!";
 
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
-    statusBarStyle: "default",
+    statusBarStyle: "black-translucent",
     title: APP_DEFAULT_TITLE,
     // startUpImage: [],
   },
