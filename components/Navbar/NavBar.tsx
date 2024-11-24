@@ -166,6 +166,10 @@ export default function NavBar({ username }: Props) {
           aria-orientation="vertical"
           aria-labelledby="user-menu-button"
         >
+          <a className="block px-4 py-2 text-sm text-white" href="/">
+            Home
+          </a>
+
           <a className="block px-4 py-2 text-sm text-white" href="/documents">
             Documents
           </a>
