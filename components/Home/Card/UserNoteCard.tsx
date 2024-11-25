@@ -19,7 +19,9 @@ export default function UserNoteCard({
     <div>
       <div className="card bg-zinc-950 w-96 shadow-xl m-8">
         <div className="card-body">
-          <div className="divider text-2xl">{document}</div>
+          <div className="divider text-2xl overflow-x-scroll py-4">
+            {document}
+          </div>
           <div className="overflow-y-scroll max-h-72">
             <div className="chat chat-end">
               <div className="chat-image avatar">

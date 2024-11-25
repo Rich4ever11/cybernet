@@ -230,7 +230,7 @@ export default function UserDocuments() {
                 index
               ) => (
                 <div
-                  className="card bg-base-100 w-96 shadow-xl border-2 border-white/50"
+                  className="card bg-base-100/20 w-96 shadow-xl border-2 border-white/50"
                   key={index}
                 >
                   <div className="card-body">
