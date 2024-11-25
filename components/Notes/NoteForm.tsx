@@ -55,6 +55,7 @@ export default function NoteForm({
           console.log("Successfully added note");
           setNoteContents("");
           showForm(false);
+          location.reload();
         }
       }
     } catch (error) {

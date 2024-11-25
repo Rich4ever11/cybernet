@@ -63,9 +63,7 @@ export async function POST(req: any, res: NextApiResponse<ResponseData>) {
         dataSourceId: process.env.BEDROCK_KNOWLEDGE_BASE_DATA_SOURCE_ID, // required
       };
       const syncKnowledgeBaseCommand = new StartIngestionJobCommand(input);
-      const bedrock_response = await bedrockAgentClient.send(
-        syncKnowledgeBaseCommand as any
-      );
+      bedrockAgentClient.send(syncKnowledgeBaseCommand as any);
 
       return NextResponse.json(
         { message: "[+} File Successfully Added" },

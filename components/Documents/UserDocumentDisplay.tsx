@@ -31,12 +31,14 @@ export const UserDocumentDisplay = ({
       }
     );
     if (response.ok) {
-      const objectURL = URL.createObjectURL(event.target.files[0]);
-      setDynamicDocs([
-        {
-          uri: objectURL,
-        },
-      ]);
+      location.reload();
+
+      // const objectURL = URL.createObjectURL(event.target.files[0]);
+      // setDynamicDocs([
+      //   {
+      //     uri: objectURL,
+      //   },
+      // ]);
     }
   };
 
