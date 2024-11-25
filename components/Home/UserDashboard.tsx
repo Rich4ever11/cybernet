@@ -123,11 +123,11 @@ export default function UserDocuments() {
       </div>
 
       <div className="w-screen">
-        <div className="overflow-x-auto overflow-y-scroll max-w-full max-h-screen">
+        <div className="overflow-x-auto overflow-y-scroll max-w-full max-h-screen shrink-0">
           <table className="table">
             <thead>
               <tr>
-                <th className="hidden md:block">Name</th>
+                <th className="">Name</th>
                 <th>Document Name</th>
                 <th>Size</th>
                 <th></th>
@@ -189,7 +189,7 @@ export default function UserDocuments() {
 
             <tfoot>
               <tr>
-                <th className="hidden md:block">Name</th>
+                <th className="">Name</th>
                 <th>Document Name</th>
                 <th>Size</th>
                 <th></th>
@@ -230,7 +230,7 @@ export default function UserDocuments() {
                 index
               ) => (
                 <div
-                  className="card bg-base-100/20 w-96 shadow-xl border-2 border-white/50"
+                  className="card bg-base-100/20 w-96 h-64 shrink-0 shadow-xl border-2 border-white/50 overflow-scroll"
                   key={index}
                 >
                   <div className="card-body">
@@ -308,7 +308,7 @@ export default function UserDocuments() {
       <div>
         <div className="">
           {dynamicDocs.length ? (
-            <div className="overflow-x-scroll w-auto">
+            <div className="overflow-x-scroll w-screen">
               <div className="flex justify-center divider divider-primary">
                 <h1 className="text-white font-thin text-4xl py-2 overflow-x-scroll">
                   {renderedDocument}
