@@ -310,7 +310,7 @@ export default function UserDocuments() {
           {dynamicDocs.length ? (
             <div className="overflow-x-scroll w-auto">
               <div className="flex justify-center divider divider-primary">
-                <h1 className="text-white font-thin text-4xl py-2">
+                <h1 className="text-white font-thin text-4xl py-2 overflow-x-scroll">
                   {renderedDocument}
                 </h1>
               </div>
