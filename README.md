@@ -9,6 +9,10 @@ Feel free to request access to this document through google docs or github messa
 ### [Beta Web App Video Demo](https://drive.google.com/file/d/1nXCXwG-kxC_-TkS0Wn6145b1AL16vykz/view?usp=sharing)
 ### [Beta Mobile App Demo](https://drive.google.com/file/d/1R0AJv_SpoWTn7PJeNdaAtOjKOCKqk0YR/view?usp=drive_link)
 
+
+# Gif Demo
+![ezgif-2-0e9cd222d8-1](https://github.com/user-attachments/assets/ba6648a8-0a16-4b21-80cf-338635b8c5d7)
+
 # Software Beta Images
 
 ## Login 
