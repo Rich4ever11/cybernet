@@ -87,7 +87,7 @@ export default function SignUpCard() {
             <div className="mb-5">
               <label
                 htmlFor="firstName"
-                className="block mb-2 text-2xl font-mono  text-gray-900 dark:text-white"
+                className="block mb-2 text-2xl font-mono  text-white"
               >
                 First Name
               </label>
@@ -104,7 +104,7 @@ export default function SignUpCard() {
             <div className="mb-5">
               <label
                 htmlFor="lastName"
-                className="block mb-2 text-2xl font-mono  text-gray-900 dark:text-white"
+                className="block mb-2 text-2xl font-mono text-white"
               >
                 Last Name
               </label>
@@ -123,7 +123,7 @@ export default function SignUpCard() {
           <div className="mb-5">
             <label
               htmlFor="email"
-              className="block mb-2 text-2xl font-mono  text-gray-900 dark:text-white"
+              className="block mb-2 text-2xl font-mono text-white"
             >
               Email
             </label>
@@ -141,7 +141,7 @@ export default function SignUpCard() {
           <div className="mb-5">
             <label
               htmlFor="username"
-              className="block mb-2 text-2xl font-mono  text-gray-900 dark:text-white"
+              className="block mb-2 text-2xl font-mono text-white"
             >
               Username
             </label>
@@ -158,7 +158,7 @@ export default function SignUpCard() {
           <div className="mb-5">
             <label
               htmlFor="password"
-              className="block mb-2 text-2xl font-mono text-gray-900 dark:text-white"
+              className="block mb-2 text-2xl font-mono text-white"
             >
               Password
             </label>

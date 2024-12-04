@@ -32,7 +32,6 @@ export const UserDocumentDisplay = ({
     );
     if (response.ok) {
       location.reload();
-
       // const objectURL = URL.createObjectURL(event.target.files[0]);
       // setDynamicDocs([
       //   {

@@ -78,7 +78,7 @@ export default function SignInCard() {
           <div className="mb-5">
             <label
               htmlFor="username"
-              className="block mb-2 text-2xl font-mono  text-gray-900 dark:text-white"
+              className="block mb-2 text-2xl font-mono  text-white"
             >
               Username
             </label>
@@ -95,7 +95,7 @@ export default function SignInCard() {
           <div className="mb-5">
             <label
               htmlFor="password"
-              className="block mb-2 text-2xl font-mono text-gray-900 dark:text-white"
+              className="block mb-2 text-2xl font-mono text-white"
             >
               Password
             </label>
@@ -119,7 +119,7 @@ export default function SignInCard() {
         </button>
 
         <div className="py-2">
-          <p className="text-gray-600">
+          <p className="text-white/70">
             {"Don't have an account?"}{" "}
             <Link href="/sign-up">Register Here</Link>
           </p>

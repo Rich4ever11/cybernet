@@ -127,10 +127,10 @@ export default function UserDocuments() {
           <table className="table">
             <thead>
               <tr>
-                <th className="">Name</th>
-                <th>Document Name</th>
-                <th>Size</th>
-                <th></th>
+                <th className="text-white">Name</th>
+                <th className="text-white">Document Name</th>
+                <th className="text-white">Size</th>
+                <th className="text-white"></th>
               </tr>
             </thead>
             <tbody>
@@ -157,26 +157,26 @@ export default function UserDocuments() {
                           </div>
                         </div>
                         <div>
-                          <div className="font-bold">
+                          <div className="font-bold text-white">
                             {firstName} {lastName}
                           </div>
-                          <div className="text-sm opacity-50">
+                          <div className="text-sm opacity-50 text-white">
                             United States
                           </div>
                         </div>
                       </div>
                     </td>
-                    <td>
+                    <td className="text-white">
                       {parseDocumentKey(document.Key)}
                       <br />
                       <span className="badge badge-ghost badge-sm">
                         {document.LastModified}
                       </span>
                     </td>
-                    <td>{document.Size}</td>
+                    <td className="text-white">{document.Size}</td>
                     <th>
                       <button
-                        className="btn btn-ghost btn-xs"
+                        className="btn btn-ghost btn-xs text-white "
                         onClick={() => handleDocumentRender(document.Key)}
                       >
                         Render Document
@@ -189,10 +189,10 @@ export default function UserDocuments() {
 
             <tfoot>
               <tr>
-                <th className="">Name</th>
-                <th>Document Name</th>
-                <th>Size</th>
-                <th></th>
+                <th className="text-white">Name</th>
+                <th className="text-white">Document Name</th>
+                <th className="text-white">Size</th>
+                <th className="text-white"></th>
               </tr>
             </tfoot>
           </table>
@@ -237,7 +237,7 @@ export default function UserDocuments() {
                     <h2 className="card-title w-fit overflow-x-scroll text-white text-2xl font-thin">
                       {parseDocumentKey(userNote.document_key)}
                     </h2>
-                    <p>{userNote.content}</p>
+                    <p className="text-white">{userNote.content}</p>
                   </div>
                 </div>
               )
@@ -284,6 +284,7 @@ export default function UserDocuments() {
                       document={parseDocumentKey(chat.document_id)}
                       userQuestion={chat.user_question}
                       cybernetResponse={chat.model_response}
+                      created_at={chat.created_at}
                       username={firstName + " " + lastName}
                     />
                   </div>
