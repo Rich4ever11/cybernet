@@ -1,7 +1,5 @@
 import React from "react";
 
-type Props = {};
-
-const NoteFlow = (props: Props) => {
+const NoteFlow = () => {
   return <div>NoteFlow</div>;
 };
