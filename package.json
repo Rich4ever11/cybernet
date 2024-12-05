@@ -17,6 +17,7 @@
     "@ducanh2912/next-pwa": "^10.2.9",
     "@huggingface/inference": "^2.8.1",
     "@react-pdf/renderer": "^3.4.4",
+    "@xyflow/react": "^12.3.5",
     "aws-sdk": "^2.1691.0",
     "babel-preset-es2015": "^6.24.1",
     "daisyui": "^4.12.10",

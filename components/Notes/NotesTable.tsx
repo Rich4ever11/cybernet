@@ -14,6 +14,7 @@ export default function NotesTable({
   isFormOpen,
 }: Props) {
   const [userNotes, setUserNotes] = useState([]);
+  const [userNotesSearch, setUserNotesSearch] = useState([]);
   const [formOpen, setFormOpen] = useState("");
 
   useEffect(() => {
@@ -21,10 +22,20 @@ export default function NotesTable({
       const response = await fetch(`/api/notes?id=${user_id}`);
       const result = await response.json();
       setUserNotes(result.body);
+      setUserNotesSearch(result.body);
     };
 
     handleNotesGetter();
   }, []);
+
+  const handleNoteSearch = (searchQuery: string) => {
+    const newUserNotes = userNotes;
+
+    const filteredLocations = searchQuery
+      ? newUserNotes.filter((note: any) => note?.content?.includes(searchQuery))
+      : userNotes;
+    setUserNotesSearch(filteredLocations);
+  };
 
   const parseDocumentKey = (fullDocumentPath: string) => {
     const pathSplit = fullDocumentPath.split("/");
@@ -50,6 +61,15 @@ export default function NotesTable({
         className="bg-black w-screen overflow-scroll"
         style={{ height: "93vh" }}
       >
+        <div className="flex flex-col m-4">
+          <h3 className="text-white font-thin">Search Notes</h3>
+          <input
+            type="text"
+            placeholder="Type here"
+            className="input input-bordered w-full max-w-xs"
+            onChange={(event) => handleNoteSearch(event.target.value)}
+          />
+        </div>
         <table className="table table-zebra">
           <thead>
             <tr>
@@ -62,7 +82,7 @@ export default function NotesTable({
             </tr>
           </thead>
           <tbody>
-            {userNotes.map(
+            {userNotesSearch.map(
               (
                 note: {
                   id: string;

@@ -27,7 +27,7 @@ export const createAINotesTable = async () => {
 
     CREATE TABLE IF NOT EXISTS notes_ai (
         id SERIAL PRIMARY KEY,
-        chat_id INTEGER REFERENCES chat (id) NOT NULL,
+        chat_id INTEGER NOT NULL,
         note_content TEXT NOT NULL,
         created_at NUMERIC(100, 2) NOT NULL
     )
@@ -64,6 +64,6 @@ export const createChatTable = async () => {
   }
 };
 
-createNotesTable();
+// createNotesTable();
 createAINotesTable();
-createChatTable();
+// createChatTable();

@@ -274,7 +274,7 @@ export default function UserDocuments() {
                     user_question: string;
                     model_response: string;
                     model_version: string;
-                    created_at: string;
+                    created_at: number;
                   },
                   index
                 ) => (
