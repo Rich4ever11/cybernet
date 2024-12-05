@@ -14,7 +14,11 @@ export default function AINotes() {
   const [userId, setUserId] = useState<string>("");
   const [userDocuments, setUserDocuments] = useState([]);
   const [showNotesForm, setShowNotesForm] = useState(false);
-  const [editNote, setEditNote] = useState<any>({});
+  const [editNote, setEditNote] = useState<{
+    note_content: string;
+    note_id: string;
+    chat_id: number;
+  }>();
 
   const handleUserDocuments = async () => {
     const result = await getUserCookieSession();
@@ -52,7 +56,7 @@ export default function AINotes() {
           <div className="basis-1/3">
             {userDocuments && editNote?.chat_id && (
               <AINoteForm
-                key={editNote as Key}
+                key={editNote as unknown as Key}
                 editNote={
                   editNote as {
                     note_content: string;
