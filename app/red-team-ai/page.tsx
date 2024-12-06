@@ -9,6 +9,7 @@ import { getUserCookieSession } from "@/util/middleware/cookies";
 
 export default function AI() {
   const [userDocuments, setUserDocuments] = useState([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const handleUserDocuments = async () => {
     const result = await getUserCookieSession();
@@ -30,8 +31,22 @@ export default function AI() {
 
   return (
     <div>
-      <NavBarAuth />
-      <Conversation userDocuments={userDocuments} />
+      <NavBarAuth setLoadingStatus={setLoading} />
+
+      {loading ? (
+        <>
+          <div className="flex justify-center h-screen">
+            <div className="py-2">
+              <h1 className="text-8xl font-thin">
+                Loading{" "}
+                <span className="loading loading-spinner loading-lg"></span>
+              </h1>
+            </div>
+          </div>
+        </>
+      ) : (
+        <Conversation userDocuments={userDocuments} />
+      )}
     </div>
   );
 }

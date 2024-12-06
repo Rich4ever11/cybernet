@@ -12,6 +12,7 @@ import Link from "next/link";
 // type Props = {};
 
 export default function UserDocuments() {
+  const [loading, setLoading] = useState<boolean>(false);
   const [dynamicDocs, setDynamicDocs] = useState<any>([]);
   const [userDocuments, setUserDocuments] = useState([]);
   const [userNotes, setUserNotes] = useState([]);

@@ -4,6 +4,9 @@ import localFont from "next/font/local";
 import { UserContextProvider } from "@/context/User/UserContext";
 
 import "./globals.css";
+import { getUserCookieSession } from "@/util/middleware/cookies";
+import router from "next/router";
+import { useEffect } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
