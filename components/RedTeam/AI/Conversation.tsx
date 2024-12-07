@@ -22,7 +22,9 @@ type Props = {
 
 export default function Conversation({ userDocuments }: Props) {
   const [dynamicDocs, setDynamicDocs] = useState<any>([]);
+  const [documentConversation, setDocumentConversation] = useState<any>([]);
   const [documentKey, setDocumentKey] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const parseDocument = (fullDocumentPath: string) => {
     const pathSplit = fullDocumentPath.split("/");
@@ -30,7 +32,10 @@ export default function Conversation({ userDocuments }: Props) {
   };
 
   async function handleDocumentRender(documentKey: string) {
+    setLoading(true);
     setDynamicDocs([]);
+    setDocumentConversation([]);
+    setDocumentKey("");
     const data = {
       documentKey: documentKey,
     };
@@ -52,18 +57,30 @@ export default function Conversation({ userDocuments }: Props) {
       type: contentType,
     });
     const objectURL = URL.createObjectURL(documentBlob);
-    setDocumentKey(documentKey);
     setDynamicDocs([
       {
         uri: objectURL,
       },
     ]);
+
+    const user_id = documentKey.split("/")[0];
+    const conversation_res = await fetch(
+      `/api/chat?id=${user_id}&document_key=${documentKey}`
+    );
+    const responseConversationData = await conversation_res.json();
+    setDocumentConversation(responseConversationData.body);
+    setDocumentKey(documentKey);
+    setLoading(false);
   }
 
   return (
     <div className="flex md:flex-row flex-col h-full">
       <div className="max-w-auto border-red-50 px-1 justify-items-center basis-4/12 flex flex-col justify-end bg-neutral-900">
-        <Chat document_key={documentKey} key={documentKey} />
+        <Chat
+          key={documentKey}
+          document_key={documentKey}
+          previousConversation={documentConversation}
+        />
       </div>
       <div className="basis-8/12">
         <div className="drawer">
@@ -82,7 +99,7 @@ export default function Conversation({ userDocuments }: Props) {
               </label>
             </div>
           </div>
-          <div className="drawer-side drawer-end">
+          <div className="drawer-side drawer-end z-10">
             <label
               htmlFor="my-drawer"
               aria-label="close sidebar"
@@ -92,17 +109,23 @@ export default function Conversation({ userDocuments }: Props) {
               <h1 className="text-white font-3xl">Saved Documents</h1>
             </div>
             <ul className="menu bg-black text-base-content min-h-full w-80 p-4">
-              {userDocuments.map((userDocument, index) => (
-                <li key={index}>
-                  <a
-                    className="text-white"
-                    onClick={() => handleDocumentRender(userDocument.Key)}
-                  >
-                    <IoIosDocument color="white" size={24} />
-                    {parseDocument(userDocument.Key)}
-                  </a>
+              {loading && (
+                <li>
+                  <p>Loading...</p>
                 </li>
-              ))}
+              )}
+              {!loading &&
+                userDocuments.map((userDocument, index) => (
+                  <li key={index}>
+                    <a
+                      className="text-white"
+                      onClick={() => handleDocumentRender(userDocument.Key)}
+                    >
+                      <IoIosDocument color="white" size={24} />
+                      {parseDocument(userDocument.Key)}
+                    </a>
+                  </li>
+                ))}
             </ul>
           </div>
         </div>

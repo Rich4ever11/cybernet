@@ -56,18 +56,38 @@ export async function POST(req: any, res: any) {
 
 export async function GET(req: any, res: NextApiResponse<any>) {
   const user_id = req.nextUrl.searchParams.get("id");
+  const document_key = req.nextUrl.searchParams.get("document_key");
 
   try {
     const getQuery = `
           SELECT *
-          FROM notes_ai
-          WHERE user_id = $1
+          FROM chat
+          WHERE user_id = $1 AND document_id = $2
+          ORDER BY created_at
       `;
 
-    const values = [user_id];
+    const values = [user_id, document_key];
 
     const result = await pool.query(getQuery, values);
-    return NextResponse.json({ body: result.rows }, { status: 200 });
+    // time: answerTimeInSeconds,
+    // content: aiAnswer,
+    // name: "Cybernet AI",
+    // role: "assistant",
+    const conversation = result.rows.flatMap((chat_object: any) => [
+      {
+        time: chat_object.created_at,
+        content: chat_object.user_question,
+        role: "user",
+        name: "user",
+      },
+      {
+        time: chat_object.created_at,
+        content: chat_object.model_response,
+        role: "assistant",
+        name: "Cybernet AI",
+      },
+    ]);
+    return NextResponse.json({ body: conversation }, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error_message: error }, { status: 400 });

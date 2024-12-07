@@ -4,11 +4,14 @@ import { GiCyberEye } from "react-icons/gi";
 
 type Props = {
   document_key: string;
+  previousConversation: any;
 };
 
-export default function Chat({ document_key }: Props) {
+export default function Chat({ document_key, previousConversation }: Props) {
+  console.log(previousConversation);
   const [question, setQuestion] = useState<string>("");
-  const [messages, setMessages] = useState<any>([]);
+  const [messages, setMessages] = useState<any>(previousConversation);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleQuestionInput = async (event: {
     target: { value: React.SetStateAction<string> };
@@ -18,6 +21,7 @@ export default function Chat({ document_key }: Props) {
 
   const handleAIRequest = async () => {
     if (question && document_key) {
+      setLoading(true);
       const questionTimeInSeconds = new Date().getTime() / 1000;
       const userMessage = {
         time: questionTimeInSeconds,
@@ -32,7 +36,6 @@ export default function Chat({ document_key }: Props) {
         question: question,
         document_key: document_key,
       };
-      console.log(body);
       const res = await fetch("/api/ai/bedrock", {
         headers: {
           Accept: "application/json",
@@ -53,6 +56,7 @@ export default function Chat({ document_key }: Props) {
         role: "assistant",
       };
       setMessages([...messages, ...[userMessage, aiMessage]]);
+      setLoading(false);
     }
   };
 
@@ -107,6 +111,13 @@ export default function Chat({ document_key }: Props) {
           </div>
         </div>
       </div>
+      {loading ? (
+        <p>
+          Loading... <span className="loading loading-bars loading-xs"></span>
+        </p>
+      ) : (
+        <></>
+      )}
       <div className="flex flex-row p-4">
         <input
           type="text"
@@ -120,10 +131,10 @@ export default function Chat({ document_key }: Props) {
         <div className="px-2">
           <button
             className="btn btn-circle btn-outline border-0"
-            disabled={!document_key}
+            disabled={!document_key || loading === true}
             onClick={handleAIRequest}
           >
-            {document_key ? (
+            {document_key && loading === false ? (
               <FiArrowUpCircle size={42} color="white" />
             ) : (
               <FiArrowUpCircle size={42} color="grey" />
