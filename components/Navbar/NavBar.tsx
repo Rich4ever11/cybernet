@@ -104,6 +104,16 @@ export default function NavBar({ username }: Props) {
                   Notes
                 </Link>
               </li>
+
+              <li>
+                <Link
+                  href="/ai_notes"
+                  className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >
+                  AI Notes
+                </Link>
+              </li>
+
               <li>
                 <Link
                   href="/blue-team-tools"
@@ -127,7 +137,7 @@ export default function NavBar({ username }: Props) {
       </nav>
       {showUserMenu && username !== "Loading..." ? (
         <div
-          className="absolute right-0 z-10 mt-2 w-48 mr-44 origin-top-right rounded-md bg-black py-1 shadow-lg ring-1 ring-white ring-opacity-5 focus:outline-none"
+          className="absolute left-0 z-10 mt-2 w-48 mr-44 origin-top-right rounded-md bg-black py-1 shadow-lg ring-1 ring-white ring-opacity-5 focus:outline-none"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="user-menu-button"
@@ -180,6 +190,10 @@ export default function NavBar({ username }: Props) {
 
           <a className="block px-4 py-2 text-sm text-white" href="/notes">
             Notes
+          </a>
+
+          <a className="block px-4 py-2 text-sm text-white" href="/ai_notes">
+            AI Notes
           </a>
 
           <a
