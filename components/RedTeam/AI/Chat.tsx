@@ -110,7 +110,9 @@ export default function Chat({ document_key }: Props) {
       <div className="flex flex-row p-4">
         <input
           type="text"
-          placeholder="Type Your Question Here"
+          placeholder={
+            document_key ? "Type Your Question Here" : "Render A Saved Document"
+          }
           className="input input-bordered border-white border-2 w-full max-w-full text-white"
           value={question}
           onChange={handleQuestionInput}
@@ -118,9 +120,14 @@ export default function Chat({ document_key }: Props) {
         <div className="px-2">
           <button
             className="btn btn-circle btn-outline border-0"
+            disabled={!document_key}
             onClick={handleAIRequest}
           >
-            <FiArrowUpCircle size={42} color="white " />
+            {document_key ? (
+              <FiArrowUpCircle size={42} color="white" />
+            ) : (
+              <FiArrowUpCircle size={42} color="grey" />
+            )}
           </button>
         </div>
       </div>
