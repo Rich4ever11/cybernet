@@ -50,7 +50,7 @@ export default function AINotes() {
 
       {loading ? (
         <>
-          <div className="flex justify-center h-screen">
+          <div className="flex flex-row justify-center items-center h-screen">
             <div className="py-2">
               <h1 className="text-8xl font-thin">
                 Loading{" "}

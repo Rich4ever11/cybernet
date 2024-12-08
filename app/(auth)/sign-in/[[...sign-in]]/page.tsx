@@ -1,9 +1,25 @@
-import React from "react";
-import SignInCard from "@/components/Authentication/SignInCard";
+"use client";
 
+import React, { useState } from "react";
+import SignInCard from "@/components/Authentication/SignInCard";
+import { useEffect } from "react";
+import { getUserCookieSession } from "@/util/middleware/cookies";
+import { useRouter } from "next/navigation";
 // type Props = {};
 
 export default function SignInPage({}: object) {
+  const router = useRouter();
+  const handleUserCookie = async () => {
+    const result = await getUserCookieSession();
+    if (result) {
+      router.push("/");
+      return;
+    }
+  };
+  useEffect(() => {
+    handleUserCookie();
+  }, []);
+
   return (
     <div className="bg-gray-950 min-h-screen h-full content-center border-8 border-black">
       <div className="grid justify-items-stretch">
@@ -26,7 +42,7 @@ export default function SignInPage({}: object) {
             />
           </div>
         </div>
-        <div className="">
+        <div>
           <SignInCard />
         </div>
       </div>

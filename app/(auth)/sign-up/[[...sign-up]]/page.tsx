@@ -1,10 +1,28 @@
+"use client";
+
 import SignUpCard from "@/components/Authentication/SignUpCard";
-import React from "react";
 import Image from "next/image";
+import React, { useState } from "react";
+import SignInCard from "@/components/Authentication/SignInCard";
+import { useEffect } from "react";
+import { getUserCookieSession } from "@/util/middleware/cookies";
+import { useRouter } from "next/navigation";
 
 // type Props = {};
 
 export default function SignUpPage({}: object) {
+  const router = useRouter();
+  const handleUserCookie = async () => {
+    const result = await getUserCookieSession();
+    if (result) {
+      router.push("/");
+      return;
+    }
+  };
+  useEffect(() => {
+    handleUserCookie();
+  }, []);
+
   return (
     <div>
       <div className="bg-gray-950 min-h-screen h-full content-center">
