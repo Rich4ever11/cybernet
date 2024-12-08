@@ -8,7 +8,7 @@ export default function Home() {
   const [loading, setLoading] = useState<boolean>(true);
 
   return (
-    <div className="bg-black h-full grid font-[family-name:var(--font-geist-sans)]">
+    <div className="dark bg-black h-full grid font-[family-name:var(--font-geist-sans)]">
       <NavBarAuth setLoadingStatus={setLoading} />
       {loading ? (
         <>

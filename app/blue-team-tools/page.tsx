@@ -12,7 +12,7 @@ export default function BlueTeamTools() {
   const [loading, setLoading] = useState<boolean>(true);
 
   return (
-    <div>
+    <div className="bg-black">
       <NavBarAuth setLoadingStatus={setLoading} />
 
       {loading ? (
