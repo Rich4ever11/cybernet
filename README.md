@@ -2,7 +2,7 @@
 
 Cybernet AI is a new age AI driven cybersecurity software. Cybernet AI's main focus is the document question and answer software but it however includes various cybersecurity tools such as s port scanning, exploit search, password generation, data breach search and much more...
 
-## [Documentation](https://docs.google.com/document/d/1B42uJeHJsKoudbfarv0U99nIjy_kUtQDoQ7SkUjI2cI/edit?usp=sharing)
+## [Check Point RC - Documentation](https://docs.google.com/document/d/1qKutz3mwTcff3oqCNozdYrz6A7mrzsuIsOYnKSP892Q/edit?usp=sharing)
 
 Feel free to request access to this document through google docs or github messaging.
 
